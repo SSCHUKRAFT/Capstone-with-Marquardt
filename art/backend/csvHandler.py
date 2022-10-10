@@ -4,8 +4,6 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import mysql.connector
-import sys
-import csv
 
 db = mysql.connector.connect(
     user = 'root',
