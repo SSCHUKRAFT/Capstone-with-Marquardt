@@ -25,10 +25,15 @@ app.get("/api/get", (req, res) => {
 app.post("/api/insert", (req, res) => {
     const passedCount = req.body.passedCount
     const failedCount = req.body.failedCount
+    const retestedCount = req.body.retestedCount
+    const downtime = req.body.downtime
+    const cycletime = req.body.cycletime
+    const errorCode = req.body.errorCode
+    const downtimeDesc = req.body.downtimeDesc
 
     const sqlInsert = 
-    "INSERT INTO data_entry (passedCount, failedCount) VALUES (?,?)"
-    db.query(sqlInsert, [passedCount, failedCount], (err, result) => {
+    "INSERT INTO data_entry (passedCount, failedCount, retestedCount, downtime, cycletime, errorCode, downtimeDesc) VALUES (?,?,?,?,?,?,?)"
+    db.query(sqlInsert, [passedCount, failedCount, retestedCount, downtime, cycletime, errorCode, downtimeDesc], (err, result) => {
         console.log(err)
     });
 });

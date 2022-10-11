@@ -14,7 +14,7 @@ db = mysql.connector.connect(
 )
 cursor = db.cursor()
 
-query = "SELECT id, passedCount, failedCount from data_entry"
+query = "SELECT id, passedCount, failedCount, retestedCount, downtime, cycletime, errorCode, downtimeDesc FROM data_entry"
 cursor.execute(query)
 
 allData = cursor.fetchall() #Get all data
@@ -23,11 +23,21 @@ allData = cursor.fetchall() #Get all data
 all_id = []
 all_passed = []
 all_failed = []
-for id, passedCount, failedCount in allData:
+all_retested = []
+all_downtime = []
+all_cycletime = []
+all_errorCodes = []
+all_downtimeDesc = []
+for id, passedCount, failedCount, retestedCount, downtime, cycletime, errorCode, downtimeDesc in allData:
     all_id.append(id)
     all_passed.append(passedCount)
     all_failed.append(failedCount)
+    all_retested.append(retestedCount)
+    all_downtime.append(downtime)
+    all_cycletime.append(cycletime)
+    all_errorCodes.append(errorCode)
+    all_downtimeDesc.append(downtimeDesc)
 
-dic = {'id: ': all_id, 'passedCount: ': all_passed, 'failedCount': all_failed}
+dic = {'id: ': all_id, 'passedCount': all_passed, 'failedCount': all_failed, 'retestedCount': all_retested, 'downtime': all_downtime, 'cycletime': all_cycletime, 'errorCode': all_errorCodes, 'downtimeDesc': all_downtimeDesc}
 data_frame = pd.DataFrame(dic)
 df_csv = data_frame.to_csv('databaseCsv/pmdci_data.csv')

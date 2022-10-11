@@ -1,2 +1,5 @@
-,id: ,passedCount: ,failedCount
-0,1,431,6
+,id: ,passedCount,failedCount,retestedCount,downtime,cycletime,errorCode,downtimeDesc
+0,1,230,4,2,45,20,100,Machine caught on fire
+1,2,235,2,3,60,30,101,Fell asleep at the machine
+2,3,300,2,0,0,0,,
+3,4,150,8,7,60,50,404,Maintenance guy not found
