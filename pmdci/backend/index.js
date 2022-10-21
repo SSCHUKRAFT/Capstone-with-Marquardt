@@ -22,18 +22,53 @@ app.get("/api/get", (req, res) => {
     });
 });
 
-app.post("/api/insert", (req, res) => {
+app.post("/api/insert/passed", (req, res) => {
     const passedCount = req.body.passedCount
-    const failedCount = req.body.failedCount
-    const retestedCount = req.body.retestedCount
-    const downtime = req.body.downtime
-    const cycletime = req.body.cycletime
-    const errorCode = req.body.errorCode
-    const downtimeDesc = req.body.downtimeDesc
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
 
-    const sqlInsert = 
-    "INSERT INTO data_entry (passedCount, failedCount, retestedCount, downtime, cycletime, errorCode, downtimeDesc) VALUES (?,?,?,?,?,?,?)"
-    db.query(sqlInsert, [passedCount, failedCount, retestedCount, downtime, cycletime, errorCode, downtimeDesc], (err, result) => {
+    const sqlPassedInsert = 
+    "INSERT INTO passed_data_entry (passedCount, machine, employeeID) VALUES (?,?,?)"
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/insert/failed", (req, res) => {
+    const failedCount = req.body.failedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlFailedInsert = 
+    "INSERT INTO failed_data_entry (failedCount, machine, employeeID) VALUES (?,?,?)"
+    db.query(sqlFailedInsert, [failedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/insert/retested", (req, res) => {
+    const retestedCount = req.body.retestedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlRetestedInsert = 
+    "INSERT INTO retested_data_entry (retestedCount, machine, employeeID) VALUES (?,?,?)"
+    db.query(sqlRetestedInsert, [retestedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/insert/downtime", (req, res) => {
+    const downtime = req.body.downtime
+    const esclTime = req.body.esclTime
+    const errorCode = req.body.errorCode
+    const description = req.body.description
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlDowntimeInsert = 
+    "INSERT INTO downtime_data_entry (downtime, esclTime, errorCode, description, machine, employeeID) VALUES (?,?,?,?,?,?)"
+    db.query(sqlDowntimeInsert, [downtime, esclTime, errorCode, description, machine, employeeID], (err, result) => {
         console.log(err)
     });
 });
