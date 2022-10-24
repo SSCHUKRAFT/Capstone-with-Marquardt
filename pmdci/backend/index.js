@@ -15,10 +15,11 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/api/get", (req, res) => {
-    const sqlSelect = "SELECT * FROM data_entry";
+app.get("/api/getPassedSum/eleven", (req, res) => {
+    const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 11";
     db.query(sqlSelect, (err, result) => {
         res.send(result)
+        //console.log(result)
     });
 });
 
