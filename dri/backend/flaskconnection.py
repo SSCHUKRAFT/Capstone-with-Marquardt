@@ -45,40 +45,39 @@ def downtime():
 
 @app.route("/Main2/")
 def mainpage2():
-    main.collective("databaseCsvtest")
+    main.collective("databaseCsv2")
     return render_template("FrontEnd/f2/Mainpagef2.html",
-                           #ppm=round(
-                           #    main.ochange(main.ppmcalc("databaseCsv2")) / main.ochange(main.expectedouptput) * 100, 2),
-                           #pro=round(
-                           #    (main.prodcalc("databaseCsv2")[1]) / main.ochange(main.prodcalc("databaseCsv2")) * 100, 2),
-                           #tt=round(main.ochange(main.ttcalc("databaseCsv2")) / ((main.ochange(main.expectedouptput)) / (
-                           #    main.ttcalc("databaseCsv2").__len__())) * 100, 2),
-                           #dt=round(main.ochange(main.dtcalc("databaseCsv2")) / (
-                           #            main.dtcalc("databaseCsv2").__len__() * 600) * 100, 2),
-                           #w=round(main.ochange(main.ppmcalc("databaseCsv2")), 2),
-                           #x=round(main.prodcalc("databaseCsv2")[1],2),
-                           #y=round(main.ochange(main.ttcalc("databaseCsv2")), 2),
-                           #z=round(main.ochange(main.dtcalc("databaseCsv2")), 2)
-           )
+                           ppm=round(
+                               main.ochange(main.ppmcalc("databaseCsv2")) / main.ochange(main.expectedouptput) * 100, 2),
+                           pro=round(
+                               (main.prodcalc("databaseCsv2")[1]) / main.ochange(main.prodcalc("databaseCsv2")) * 100, 2),
+                           tt=round(main.ochange(main.ttcalc("databaseCsv2")) / ((main.ochange(main.expectedouptput)) / (
+                               main.ttcalc("databaseCsv2").__len__())) * 100, 2),
+                           dt=round(main.ochange(main.dtcalc("databaseCsv2")) / (
+                                       main.dtcalc("databaseCsv2").__len__() * 600) * 100, 2),
+                           w=round(main.ochange(main.ppmcalc("databaseCsv2")), 2),
+                           x=round(main.prodcalc("databaseCsv2")[1],2),
+                           y=round(main.ochange(main.ttcalc("databaseCsv2")), 2),
+                           z=round(main.ochange(main.dtcalc("databaseCsv2")), 2))
 
 @app.route("/ppm2/")
 def ppm2():
-    main.ppmgraph("databaseCsvtest")
+    main.ppmgraph("databaseCsv2")
     return render_template("FrontEnd/f2/ppm2.html")
 
 @app.route("/pro2/")
 def pro2():
-    main.prodgraph("databaseCsvtest")
+    main.prodgraph("databaseCsv2")
     return render_template("FrontEnd/f2/pro2.html")
 
 @app.route("/tt2/")
 def totalthr2():
-    main.ttgraph("databaseCsvtest")
+    main.ttgraph("databaseCsv2")
     return render_template("FrontEnd/f2/totalthr2.html")
 
 @app.route("/dt2/")
 def downtime2():
-    main.dtgraph("databaseCsvtest")
+    main.dtgraph("databaseCsv2")
     return render_template("FrontEnd/f2/downtime2.html")
 
 @app.route("/Main3/")
@@ -144,21 +143,20 @@ def f1():
 
 @app.route("/f2/")
 def f2():
-    main.collective("databaseCsvtest")
+    main.collective("databaseCsv2")
     return render_template("FrontEnd/f2/Mainpagef2.html",
-                           #ppm=round(
-                           #    main.ochange(main.ppmcalc("databaseCsv2")) / main.ochange(main.expectedouptput) * 100,
-                           #    2),
-                           #pro=round(
-                           #    (main.prodcalc("databaseCsv2")[1]) / main.ochange(main.prodcalc("databaseCsv2")) * 100, 2),
-                           #tt=round(main.ochange(main.ttcalc("databaseCsv2"))/((main.ochange(main.expectedouptput))/(main.ttcalc("databaseCsv2").__len__()))*100,2),
-                           #dt=round(main.ochange(main.dtcalc("databaseCsv2")) / (
-                           #        main.dtcalc("databaseCsv2").__len__() * 600) * 100, 2),
-                           #w=round(main.ochange(main.ppmcalc("databaseCsv2")), 2),
-                           #x=round(main.prodcalc("databaseCsv2")[1],2),
-                           #y=round(main.ochange(main.ttcalc("databaseCsv2")), 2),
-                           #z=round(main.ochange(main.dtcalc("databaseCsv2")), 2)
-           )
+                           ppm=round(
+                               main.ochange(main.ppmcalc("databaseCsv2")) / main.ochange(main.expectedouptput) * 100,
+                               2),
+                           pro=round(
+                               (main.prodcalc("databaseCsv2")[1]) / main.ochange(main.prodcalc("databaseCsv2")) * 100, 2),
+                           tt=round(main.ochange(main.ttcalc("databaseCsv2"))/((main.ochange(main.expectedouptput))/(main.ttcalc("databaseCsv2").__len__()))*100,2),
+                           dt=round(main.ochange(main.dtcalc("databaseCsv2")) / (
+                                   main.dtcalc("databaseCsv2").__len__() * 600) * 100, 2),
+                           w=round(main.ochange(main.ppmcalc("databaseCsv2")), 2),
+                           x=round(main.prodcalc("databaseCsv2")[1],2),
+                           y=round(main.ochange(main.ttcalc("databaseCsv2")), 2),
+                           z=round(main.ochange(main.dtcalc("databaseCsv2")), 2))
 
 @app.route("/f3/")
 def f3():

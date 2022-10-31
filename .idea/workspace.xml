@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Adding a floor, changing how the graphs function to create more accurate data" />
+    <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Part 1 of redoing the code, in short the new data import broke everything, thus I repaired most of it, still plenty to fix such as the main dashboard and PPM">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,14 +29,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Black/PycharmProjects/Capstone-with-Marquardt",
-    "settings.editor.selected.configurable": "configurable.group.appearance"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Black/PycharmProjects/Capstone-with-Marquardt&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Black\AppData\Local\Programs\Python\Python310\Lib\site-packages" />
@@ -84,8 +87,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.flaskconnection" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -119,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666615802834</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Part 1 of redoing the code, in short the new data import broke everything, thus I repaired most of it, still plenty to fix such as the main dashboard and PPM">
+      <created>1667194780536</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667194780536</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +178,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit, pushing all of the main changes, formatting and other adjustments" />
     <MESSAGE value="Adding a floor, changing how the graphs function to create more accurate data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding a floor, changing how the graphs function to create more accurate data" />
+    <MESSAGE value="Part 1 of redoing the code, in short the new data import broke everything, thus I repaired most of it, still plenty to fix such as the main dashboard and PPM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Part 1 of redoing the code, in short the new data import broke everything, thus I repaired most of it, still plenty to fix such as the main dashboard and PPM" />
   </component>
 </project>
