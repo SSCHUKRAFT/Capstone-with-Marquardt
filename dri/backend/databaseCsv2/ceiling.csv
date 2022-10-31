@@ -1,0 +1,5 @@
+,id,passedCount,failedCount,retestedCount,downtime,cycletime,errorCode,downtimeDesc
+0,1,135,4,2,45,40,100,Machine caught on fire
+1,2,435,2,3,60,0,,
+2,3,400,2,0,0,10,107,Main monitor broke
+3,4,265,8,7,60,50,104,Ran out of Materials

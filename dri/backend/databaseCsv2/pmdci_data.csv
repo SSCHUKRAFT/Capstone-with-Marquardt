@@ -1,0 +1,5 @@
+,id: ,passedCount,failedCount,retestedCount,downtime,cycletime,errorCode,downtimeDesc
+0,1,130,4,2,45,30,100,Machine exploded
+1,2,225,2,3,60,0,,
+2,3,400,2,0,0,0,,
+3,4,190,8,7,60,0,,

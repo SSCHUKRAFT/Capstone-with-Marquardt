@@ -1,0 +1,72 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/totalthr.css')}}">
+
+ 
+</head>	
+
+<body>
+
+	<div class="header">
+		<div class="side-nav">
+			<a href='/' class="logo">
+				<img src="{{ url_for('static',filename='img/mart.PNG')}}" class="logo-img">
+			</a>
+			<ul class="nav-links">
+				<li><a href="/Main2/"><p>Dashboard</p></a></li>
+				<li><a href="/ppm2/"><p>PPM</p></a></li>
+				<li><a href="/pro2/"><p>Productivity</p></a></li>
+				<li><a href="/tt2/"><p>Total Throughput</p></a></li>
+				<li><a href="/dt2/"><p>Downtime</p></a></li>
+				<div class="active"></div>
+				</ul>
+		</div>
+
+	<div class="container">
+		<button type="button" class="btn" onclick="openPopup()">Raw Data</button>
+			<div class="popup" id="popup">
+					<h2> Raw Data</h2>
+					<img src="{{ url_for('static',filename='img/and.PNG')}}">
+		<button type="button"onclick="closePopup()">OK</button>
+	</div>
+	</div>
+	
+	<script>
+	let popup = document.getElementById("popup");
+	
+	function openPopup(){
+		popup.classList.add("open-popup");
+	}
+	function closePopup(){
+		popup.classList.remove("open-popup");
+	}
+</script>
+
+<div class="container2">
+		<button type="button" class="btn2" onclick="openPopup2()">Different Areas</button>
+			<div class="popup2" id="popup2">
+					<h2> Select Area</h2>
+		<button type="button"onclick="closePopup2()">OK</button>
+	</div>
+	</div>
+	
+	<script>
+	let popup2 = document.getElementById("popup2");
+	
+	function openPopup2(){
+		popup2.classList.add("open-popup2");
+	}
+	function closePopup2(){
+		popup2.classList.remove("open-popup2");
+	}
+</script>
+
+<div>
+<img src="{{ url_for('static',filename='img/tt.png')}}" class="graph">
+</div>
+
+</body>
+</html>	
+		
+		
