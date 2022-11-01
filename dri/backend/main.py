@@ -336,6 +336,7 @@ if __name__ == '__main__':
     prodgraph("databaseCsvtest")
     dtgraph("databaseCsvtest")
     ttgraph("databaseCsvtest")
+    collective("databaseCsvtest")
     #print(sift("databaseCsv", 'Machine One'))
     #print("PPM data: " + str(ppmcalc("databaseCsv")))
     #print("Prod data: " + str(prodcalc("databaseCsv")))
