@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Part 1 of redoing the code, in short the new data import broke everything, thus I repaired most of it, still plenty to fix such as the main dashboard and PPM">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Capstone-with-Marquardt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Capstone-with-Marquardt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/art/backend/static/img/dt.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/dt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/art/backend/static/img/ppm.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/ppm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/art/backend/static/img/pro.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/pro.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/art/backend/static/img/tt.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/tt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dri/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dri/backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dri/backend/static/img/ppm.png" beforeDir="false" afterPath="$PROJECT_DIR$/dri/backend/static/img/ppm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dri/backend/templates/FrontEnd/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/dri/backend/templates/FrontEnd/LoginPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/setupTests.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,24 +43,46 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2GQ5wRbDDclv8pCbBwVpy8EfnMV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Black/PycharmProjects/Capstone-with-Marquardt&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Sean/Documents/CSC 495/Capstone-with-Marquardt",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Black\AppData\Local\Programs\Python\Python310\Lib\site-packages" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.flaskconnection">
+  <component name="RunManager" selected="Python.flaskconnection (1)">
+    <configuration name="flaskconnection (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Capstone-with-Marquardt" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/art/backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/art/backend/flaskconnection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="flaskconnection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Capstone-with-Marquardt" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,8 +127,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.flaskconnection" />
+        <item itemvalue="Python.flaskconnection (1)" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.flaskconnection" />
       </list>
     </recent_temporary>
   </component>
