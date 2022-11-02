@@ -9,25 +9,25 @@
 <body>
 
 <div class="box0">
-<a href="/ppm2/"><p>PPM</p></a>
-<p>{{ppm}}%</p>
-	<p>{{w}}</p>
+<a href="/ppm2/"><p><font size="-1">PPM</font></p></a>
+<p>Average: {{ppm}}</p>
+	<p>Total: {{w}}</p>
 </div>
 
 <div class="box1">
-<a href="/pro2/"><p>Productivity</p></a>
+<a href="/pro2/"><p><font size="-1">Productivity</font></p></a>
 <p>{{pro}}%</p>
 	<p>{{x}}</p>
 </div>
 
 <div class="box2">
-<a href="/tt2/"><p>Total Throughput</p></a>
-<p>{{tt}}%</p>
-	<p>{{y}}</p>
+<a href="/tt2/"><p><font size="-1">Total Throughput</font></p></a>
+<p>Good: {{tt}}</p>
+	<p>Failed: {{y}}</p>
 </div>
 
 <div class="box3">
-<a href="/dt2/"><p>Downtime</p></a>
+<a href="/dt2/"><p><font size="-1">Downtime</font></p></a>
 <p>{{dt}}%</p>
 	<p>{{z}}</p>
 </div>
@@ -47,12 +47,7 @@
 		</div>
 	
 	<div class="container">
-		<button type="button" class="btn" onclick="openPopup()">Raw Data</button>
-			<div class="popup" id="popup">
-					<h2> Raw Data</h2>
-					<img src="{{ url_for('static',filename='img/and.PNG')}}">
-		<button type="button"onclick="closePopup()">OK</button>
-	</div>
+		<button type="button" class="btn" onclick=window.location.href="/Main2/">Floor 2</button>
 	</div>
 	
 	<script>

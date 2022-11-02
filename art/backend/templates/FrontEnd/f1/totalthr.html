@@ -24,12 +24,7 @@
 		</div>
 
 	<div class="container">
-		<button type="button" class="btn" onclick="openPopup()">Raw Data</button>
-			<div class="popup" id="popup">
-					<h2> Raw Data</h2>
-					<img src="{{ url_for('static',filename='img/and.PNG')}}">
-		<button type="button"onclick="closePopup()">OK</button>
-	</div>
+		<button type="button" class="btn" onclick=window.location.href="/Main/">Floor 1</button>
 	</div>
 	
 	<script>
@@ -47,7 +42,10 @@
 		<button type="button" class="btn2" onclick="openPopup2()">Different Areas</button>
 			<div class="popup2" id="popup2">
 					<h2> Select Area</h2>
-		<button type="button"onclick="closePopup2()">OK</button>
+		<button type="button" onclick="window.location.href='/f1/';">Floor 1</button>
+		<button type="button" onclick="window.location.href='/f2/';">Floor 2</button>
+		<button type="button" onclick="window.location.href='/f3/';">All Floors</button>
+		<button type="button" onclick="closePopup2()">OK</button>
 	</div>
 	</div>
 	

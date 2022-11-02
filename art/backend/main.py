@@ -3,8 +3,6 @@ import plotly.graph_objects as go
 
 # arrays arrays for days
 
-expectedouptput = [800, 150, 750, 4000]
-
 # Combines relevant data and creates a list Matrices
 def mat(folder):
     TheL = []
@@ -38,19 +36,20 @@ def column(matrix, col):
         x = x + 1
     return ob
 
-def average(array1, array2):
-    final = []
+def average(array):
     x = 0
-    while x < array1.__len__():
-        final.append((array1[x]+array2[x]/2))
+    i = 0
+    while x < array.__len__():
+        i = i + array[x]
         x = x + 1
-    return final
+    i = i/array.__len__()
+    return i
 
 def combine(array1, array2):
     final = []
     x = 0
     while x < array1.__len__():
-        final.append((array1[x]+array2[x]/2))
+        final.append((array1[x]+array2[x]))
         x = x + 1
     return final
 
@@ -127,23 +126,16 @@ def consolidate(folder, position, extractval):
 # Calculate
 # respect weight of values.
 def ppmcalc(folder):
-    values = []
     f = consolidate(folder, 1, 1)
     p = consolidate(folder, 2, 1)
     r = consolidate(folder, 3, 1)
-    if p.__len__() < r.__len__():
-        i = 0
-        while  i < r.__len__():
-            p.append(0)
-            i = i + 1
-    else:
-        i = 0
-        while  i < p.__len__():
-            r.append(0)
-            i = i + 1
     good = combine(p, r)
-    values = good
-    return values
+    results = []
+    x = 0
+    while x < good.__len__():
+        results.append(f[x])
+        x = x + 1
+    return results
 
 # This measure is a percentage based on “Operator Hours” vs “Productive Hours”
 # Operator Hours are the total number of hours booked to a line times the number of operators
@@ -163,7 +155,17 @@ def prodcalc(folder):
         x = x + 1
     return values
 
-# Throughput = total good units produced / time.
+def ttcalc(folder):
+    f = consolidate(folder, 1, 1)
+    p = consolidate(folder, 2, 1)
+    r = consolidate(folder, 3, 1)
+    return [ochange(p), ochange(r), ochange(f)]
+
+def dtcalc(folder):
+    dt = consolidate(folder, 0, 1)
+    et = consolidate(folder, 0, 2)
+    results = combine(dt, et)
+    return results
 
 def ochange(array):
     x = 0
@@ -173,32 +175,22 @@ def ochange(array):
         x = x + 1
     return y
 
-def ppmnorm(array):
-    norm = []
-    x = 0
-    y = 0
-    while x < array.__len__():
-        y = round(array[x]/(expectedouptput[x])*100, 2)
-        norm.append(y)
-        x = x + 1
-    return norm
-
 # Graph
 def ppmgraph(folder):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
     labels.remove("machine")
+    temp = ppmcalc(folder)
+    results = []
     x = 0
-    y = ppmnorm(ppmcalc(folder))
-    while x < y.__len__():
-        labels.append("Line " + str(x + 1))
+    while x < temp.__len__():
+        results.append(str(round(temp[x],2)))
         x = x + 1
-    fig = go.Figure(data=[go.Bar(x=labels, y=y, text=y, textposition='auto')])
+    fig = go.Figure(data=[go.Bar(x=labels, y=temp, text=results, textposition='auto')])
     fig.update_layout( paper_bgcolor= 'rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
     fig.update_layout(title="PPM")
     fig.write_image("static/img/ppm.png")
     print("ppm updated")
-
 
 def prodgraph(folder):
     data = mat(folder)[2]
@@ -218,7 +210,6 @@ def prodgraph(folder):
     fig.write_image("static/img/pro.png")
     print("productivity updated")
 
-
 def ttgraph(folder):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
@@ -234,8 +225,6 @@ def ttgraph(folder):
     fig.update_traces(marker_line_color='rgb(8,48,107)')
     fig.write_image("static/img/tt.png")
     print("Total Throughput updated")
-    print(f)
-
 
 def dtgraph(folder):
     data = mat(folder)[0]
@@ -264,78 +253,31 @@ def collective(folder):
     ttgraph(folder)
     dtgraph(folder)
 
-def ppmgraphar(array,array2):
-    labels = []
-    x = 0
-    y = ppmnorm(average(array, array2))
-    while x < y.__len__():
-        labels.append("Line " + str(x + 1))
-        x = x + 1
-    fig = go.Figure(data=[go.Bar(x=labels, y=y, text=y, textposition='auto')])
-    fig.write_image("static/img/ppm.png")
-    print("ppm updated")
+def ppmgraphar(folderar):
+    return 0
 
 
-def prodgraphar(array,array2):
-    labels = ["Operator Hours", "Productive hours"]
-    x = 0
-    y = average(array, array2)
-    fig = go.Figure(data=[go.Pie(labels=labels, values=y)])
-    fig.write_image("static/img/pro.png")
-    print("productivity updated")
+def prodgraphar(folderar):
+    return 0
 
 
-def ttgraphar(array,array2):
-    labels = []
-    x = 0
-    y = average(array, array2)
-    z = []
-    while x < y.__len__():
-        labels.append("Line " + str(x + 1))
-        z.append(expectedouptput[x] - y[x])
-        x = x + 1
-    fig = go.Figure(data=[go.Bar(name="Completed parts", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'), go.Bar(name="quota", marker_color='rgb(0,172,23)', x=labels, y=expectedouptput, text=z, textposition='auto')])
-    fig.update_layout(barmode='stack')
-    fig.update_traces(marker_line_color='rgb(8,48,107)')
-    fig.write_image("static/img/tt.png")
-    print("Total Throughput updated")
+def ttgraphar(folderar):
+    return 0
 
 
-def dtgraphar(array,array2):
-    labels = []
-    x = 0
-    y = average(array, array2)
-    z = []
-    while x < y.__len__():
-        labels.append("Op "+str(x+1))
-        z.append(600-y[x])
-        x = x + 1
-    fig = go.Figure(data=[go.Bar(name="Downtime", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'), go.Bar(name="Remaining time", marker_color='rgb(0,172,23)', x=labels, y=z, text=z, textposition='auto')])
-    fig.update_layout(barmode='stack')
-    fig.update_traces(marker_line_color='rgb(8,48,107)')
-    fig.write_image("static/img/dt.png")
-    print("downtime update")
+def dtgraphar(folderar):
+    return 0
 
-def collectivear(array,array2):
-    ppmgraph(array,array2)
-    prodgraph(array,array2)
-    ttgraph(array,array2)
-    dtgraph(array,array2)
+def collectivear(folderar):
+    ppmgraph(folderar)
+    prodgraph(folderar)
+    ttgraph(folderar)
+    dtgraph(folderar)
 
 
 if __name__ == '__main__':
     print(mat("databaseCsvtest"))
-    print(consolidate("databaseCsvtest", 0, 1))
-    print(consolidate("databaseCsvtest", 0, 2))
-    print(consolidate("databaseCsvtest", 1, 1))
-    print(consolidate("databaseCsvtest", 2, 1))
-    print(consolidate("databaseCsvtest", 3, 1))
-    print(ppmcalc("databaseCsvtest"))
-    print(prodcalc("databaseCsvtest"))
-    print(ochange(consolidate("databaseCsvtest",2,1)))
-    prodgraph("databaseCsvtest")
-    dtgraph("databaseCsvtest")
-    ttgraph("databaseCsvtest")
+    collective("databaseCsvtest")
     #print(sift("databaseCsv", 'Machine One'))
     #print("PPM data: " + str(ppmcalc("databaseCsv")))
     #print("Prod data: " + str(prodcalc("databaseCsv")))
