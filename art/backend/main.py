@@ -53,6 +53,14 @@ def combine(array1, array2):
         x = x + 1
     return final
 
+def ochange(array):
+    x = 0
+    y = 0
+    while x < array.__len__():
+        y = y + array[x]
+        x = x + 1
+    return y
+
 # Compares values
 def compare(string, matrix):
     x = 0
@@ -140,13 +148,12 @@ def ppmcalc(folder):
 # This measure is a percentage based on “Operator Hours” vs “Productive Hours”
 # Operator Hours are the total number of hours booked to a line times the number of operators
 # Productive Hours are a relationship of total parts made vs the takt time
-def prodcalc(folder):
+def prodcalc(folder, te):
     x = 0
     workhours = 10
-    pdata = consolidate(folder,2,1)
+    pdata = consolidate(folder, 2, 1)
     op = (workhours-.25) * pdata.__len__()
     values = []
-    te = [1800,1000,2090]
     while x < pdata.__len__():
         tes = te[x]/1000*60
         st = (tes*pdata[x])/(3600)
@@ -167,14 +174,6 @@ def dtcalc(folder):
     results = combine(dt, et)
     return results
 
-def ochange(array):
-    x = 0
-    y = 0
-    while x < array.__len__():
-        y = y + array[x]
-        x = x + 1
-    return y
-
 # Graph
 def ppmgraph(folder):
     data = mat(folder)[2]
@@ -184,29 +183,34 @@ def ppmgraph(folder):
     results = []
     x = 0
     while x < temp.__len__():
-        results.append(str(round(temp[x],2)))
+        results.append(str(round(temp[x], 2)))
         x = x + 1
     fig = go.Figure(data=[go.Bar(x=labels, y=temp, text=results, textposition='auto')])
-    fig.update_layout( paper_bgcolor= 'rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-    fig.update_layout(title="PPM")
+    fig.update_layout( paper_bgcolor= 'rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
+    fig.update_layout(title="PPM", title_font_color="white")
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
     fig.write_image("static/img/ppm.png")
     print("ppm updated")
 
-def prodgraph(folder):
+def prodgraph(folder, te):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
     labels.remove("machine")
     x = 0
-    y = prodcalc(folder)
+    y = prodcalc(folder, te)
     temp = []
     while x < y.__len__():
         temp.append(str(round(y[x], 2))+"%")
         x = x + 1
     fig = go.Figure(data=[go.Table(header=dict(values=["Machine", 'Productivity']),
-                                   cells=dict(values=[labels, temp]))
-                          ])
+                                   cells=dict(
+                                       values=[labels, temp],
+                                       font_color= ['rgb(0, 0, 0)',
+                                        ['rgba(0,172,32, 0.8)' if val >= 85 else 'rgba(175,5,0, 0.8)' for val in y] ]
+                                   ))])
     fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-    fig.update_layout(title="Productivity")
+    fig.update_layout(title="Productivity", title_font_color="white")
     fig.write_image("static/img/pro.png")
     print("productivity updated")
 
@@ -218,11 +222,13 @@ def ttgraph(folder):
     p = consolidate(folder, 2, 1)
     r = consolidate(folder, 3, 1)
     fig = go.Figure(data=[go.Bar(name="Passed", marker_color='rgb(0,172,32)', x=labels, y=p, text=p, textposition='auto'),
-                          go.Bar(name="Failed", marker_color='rgb(175,5,0)', x=labels, y=f, text=f, textposition='auto'),
-                          go.Bar(name="ReTested", marker_color='rgb(0,32,172)', x=labels, y=r, text=r, textposition='auto')])
-    fig.update_layout(title="Total Throughput", barmode='stack')
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+                          go.Bar(name="ReTested", marker_color='rgb(0,32,172)', x=labels, y=r, text=r, textposition='auto'),
+                          go.Bar(name="Failed", marker_color='rgb(175,5,0)', x=labels, y=f, text=f, textposition='auto')])
+    fig.update_layout(title="Total Throughput", title_font_color="white", barmode='stack')
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
     fig.update_traces(marker_line_color='rgb(8,48,107)')
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
     fig.write_image("static/img/tt.png")
     print("Total Throughput updated")
 
@@ -238,50 +244,191 @@ def dtgraph(folder):
         labels.append("Op "+str(x+1))
         z.append(600-y[x]-w[x])
         x = x + 1
-    fig = go.Figure(data=[go.Bar(name="Downtime", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'),
-                          go.Bar(name="Escalation time", marker_color='rgb(200,80,0)', x=labels, y=w, text=w, textposition='auto'),
-                          go.Bar(name="Remaining time", marker_color='rgb(0,172,23)', x=labels, y=z, text=z, textposition='auto')])
-    fig.update_layout(title="Downtime", barmode='stack')
+    fig = go.Figure(data=[go.Bar(name="Remaining time", marker_color='rgb(0,172,23)', x=labels, y=z, text=z, textposition='auto'),
+                          go.Bar(name="Escalation time", marker_color='rgb(227,234,0)', x=labels, y=w, text=w, textposition='auto'),
+                          go.Bar(name="Downtime", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'),
+                          ])
+    fig.update_layout(title="Downtime", title_font_color="white", barmode='stack')
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
+    fig.update_traces(marker_line_color='rgb(8,48,107)')
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/dt.png")
+    print("downtime update")
+
+def collective(folder, te):
+    ppmgraph(folder)
+    prodgraph(folder, te)
+    ttgraph(folder)
+    dtgraph(folder)
+
+def ppmcalcall(folderar):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(ppmcalc(folderar[x]))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final.append(ochange(collection[y]))
+        y = y + 1
+    return final
+
+def prodcalcall(folderar, tear):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(prodcalc(folderar[x], tear[x]))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final.append(average(collection[y]))
+        y = y + 1
+    return final
+
+def ttcalcall(folderar):
+    x = 0
+    collection = []
+    final =[]
+    while x < folderar.__len__():
+        collection.append(ttcalc(folderar[x]))
+        x = x + 1
+    y = 1
+    i = 0
+    while y < folderar.__len__():
+        final = combine(collection[i], collection[y])
+        y = y + 1
+        i = i + 1
+    return [collection, final]
+
+def dtcalcall(folderar):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(dtcalc(folderar[x]))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final.append(average(collection[y]))
+        y = y + 1
+    return final
+
+def ppmgraphar(folderar):
+    labels = []
+    i = 0
+    results = ppmcalcall(folderar)
+    while i < results.__len__():
+        labels.append("Floor " + str(i+1))
+        i = i + 1
+    fig = go.Figure(data=[go.Bar(x=labels, y=results, text=results, textposition='auto')])
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
+    fig.update_layout(title="Collective PPM", title_font_color="white")
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/ppm.png")
+    print("ppm updated")
+
+def prodgraphar(folderar, tear):
+    labels = []
+    i = 0
+    temp = folderar
+    while i < temp.__len__():
+        labels.append("Floor " + str(i+1))
+        i = i + 1
+    x = 0
+    y = prodcalcall(folderar, tear)
+    temp = []
+    while x < y.__len__():
+        temp.append(str(round(y[x], 2)) + "%")
+        x = x + 1
+    fig = go.Figure(data=[go.Table(header=dict(values=["Machine", 'Productivity']),
+                                   cells=dict(
+                                       values=[labels, temp],
+                                       font_color=['rgb(0, 0, 0)',
+                                                   ['rgba(0,172,32, 0.8)' if val >= 85 else 'rgba(175,5,0, 0.8)' for val
+                                                    in y]]
+                                   ))])
     fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+    fig.update_layout(title="Collective Productivity", title_font_color="white")
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/pro.png")
+    print("productivity updated")
+
+def ttgraphar(folderar):
+    labels = []
+    i = 0
+    temp = folderar
+    while i < temp.__len__():
+        labels.append("Floor " + str(i+1))
+        i = i + 1
+    data = ttcalcall(folderar)[0]
+    p = column(data, 0)
+    r = column(data, 1)
+    f = column(data, 2)
+    fig = go.Figure(
+        data=[go.Bar(name="Passed", marker_color='rgb(0,172,32)', x=labels, y=p, text=p, textposition='auto'),
+              go.Bar(name="ReTested", marker_color='rgb(0,32,172)', x=labels, y=r, text=r, textposition='auto'),
+              go.Bar(name="Failed", marker_color='rgb(175,5,0)', x=labels, y=f, text=f, textposition='auto')])
+    fig.update_layout(title="Collective Total Throughput", title_font_color="white", barmode='stack')
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
+    fig.update_traces(marker_line_color='rgb(8,48,107)')
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/tt.png")
+    print("Total Throughput updated")
+
+def dtgraphar(folderar):
+    labels = []
+    i = 0
+    temp = folderar
+    while i < temp.__len__():
+        labels.append("Floor " + str(i+1))
+        i = i + 1
+    x = 0
+    r = 0
+    l = 0
+    ty = []
+    tw = []
+    y = []
+    w = []
+    z = []
+    while r < temp.__len__():
+        ty.append(consolidate(folderar[r], 0, 1))
+        tw.append(consolidate(folderar[r], 0, 2))
+        r = r + 1
+    while l < tw.__len__():
+        y.append(round(average(ty[l])))
+        w.append(round(average(tw[l])))
+        l = l + 1
+    while x < y.__len__():
+        labels.append("Op " + str(x + 1))
+        z.append(600 - y[x] - w[x])
+        x = x + 1
+    fig = go.Figure(
+        data=[go.Bar(name="Remaining time", marker_color='rgb(0,172,23)', x=labels, y=z, text=z, textposition='auto'),
+              go.Bar(name="Escalation time", marker_color='rgb(227,234,0)', x=labels, y=w, text=w, textposition='auto'),
+              go.Bar(name="Downtime", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'),
+              ])
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.update_layout(title="Collective Downtime", title_font_color="white", barmode='stack')
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
     fig.update_traces(marker_line_color='rgb(8,48,107)')
     fig.write_image("static/img/dt.png")
     print("downtime update")
 
-def collective(folder):
-    ppmgraph(folder)
-    prodgraph(folder)
-    ttgraph(folder)
-    dtgraph(folder)
-
-def ppmgraphar(folderar):
-    return 0
-
-
-def prodgraphar(folderar):
-    return 0
-
-
-def ttgraphar(folderar):
-    return 0
-
-
-def dtgraphar(folderar):
-    return 0
-
-def collectivear(folderar):
-    ppmgraph(folderar)
-    prodgraph(folderar)
-    ttgraph(folderar)
-    dtgraph(folderar)
+def collectivear(folderar, tear):
+    ppmgraphar(folderar)
+    prodgraphar(folderar, tear)
+    ttgraphar(folderar)
+    dtgraphar(folderar)
 
 
 if __name__ == '__main__':
-    print(mat("databaseCsvtest"))
-    collective("databaseCsvtest")
-    #print(sift("databaseCsv", 'Machine One'))
-    #print("PPM data: " + str(ppmcalc("databaseCsv")))
-    #print("Prod data: " + str(prodcalc("databaseCsv")))
-    #print("tt data: " + str(ttcalc("databaseCsv")))
-    #print(ppmnorm(ppmcalc("databaseCsv")))
-    #collective("databaseCsv")
-
+    a = ["databaseCsv", "databaseCsvtest"]
+    b = [[3000,2000], [1800,1000,2090]]
+    ttgraph(a[1])
