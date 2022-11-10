@@ -1,5 +1,0 @@
-,id,passedCount,failedCount,retestedCount,downtime,cycletime,errorCode,downtimeDesc
-0,1,40,1,2,30,20,404,computer crashed
-1,2,40,2,3,0,0,,
-2,3,30,0,0,0,0,,
-3,4,35,2,7,30,20,404,computer crashed

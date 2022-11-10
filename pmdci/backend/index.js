@@ -11,168 +11,152 @@ const db = mysql.createConnection({
     database: "pmdci_db",
 });
 
+db.connect(function(err){
+    if(err) throw err;
+    console.log("Connected!");
+})
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get("/api/getPassedSum/Machine One", (req, res) => {
-//     const sqlSelect = "SELECT SUM(passedCount) AS passedTotal FROM passed_data_entry WHERE machine = 'Machine One'";
-//     db.query(sqlSelect, (err, result) => {
-//         res.send(''+result[0].passedTotal)
-//     });
-// });
-
-// app.get("/api/getPassedSum/Machine Two", (req, res) => {
-//     const sqlSelect = "SELECT SUM(passedCount) AS passedTotal FROM passed_data_entry WHERE machine = 'Machine Two'";
-//     db.query(sqlSelect, (err, result) => {
-//         res.send(''+result[0].passedTotal)
-//     });
-// });
-
-// app.get("/api/getPassedSum/Machine Three", (req, res) => {
-//     const sqlSelect = "SELECT SUM(passedCount) AS passedTotal FROM passed_data_entry WHERE machine = 'Machine Three'";
-//     db.query(sqlSelect, (err, result) => {
-//         res.send(''+result[0].passedTotal)
-//     });
-// });
-
 app.get("/api/getPassedSum/six", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 6";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/seven", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 7";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/eight", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 8";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/nine", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 9";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/ten", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 10";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/eleven", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 11";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/twelve", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 12";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/thirteen", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 13";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/fourteen", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 14";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getPassedSum/fifteen", (req, res) => {
     const sqlSelect = "SELECT SUM(passedCount) AS hourlySum FROM passed_data_entry WHERE HOUR(timestamp) = 15";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/six", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 6";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/seven", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 7";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/eight", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 8";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/nine", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 9";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/ten", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 10";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/eleven", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 11";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/twelve", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 12";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/thirteen", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 13";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/fourteen", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 14";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
 app.get("/api/getFailedSum/fifteen", (req, res) => {
     const sqlSelect = "SELECT SUM(failedCount) AS hourlySum FROM failed_data_entry WHERE HOUR(timestamp) = 15";
     db.query(sqlSelect, (err, result) => {
-        res.send(''+result[0].hourlySum)
+        res.send(''+result?.[0].hourlySum)
     });
 });
 
