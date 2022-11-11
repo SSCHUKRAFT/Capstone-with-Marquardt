@@ -211,6 +211,116 @@ app.post("/api/insert/downtime", (req, res) => {
     });
 });
 
+app.post("/api/edit/passed/6", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 6;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/7", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 7;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/8", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 8;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/9", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 9;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/10", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 10;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/11", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 11;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/12", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 12;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/13", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 13;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/14", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 14;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
+app.post("/api/edit/passed/15", (req, res) => {
+    const passedCount = req.body.passedCount
+    const machine = req.body.machine
+    const employeeID = req.body.employeeID
+
+    const sqlPassedInsert = `UPDATE passed_data_entry SET passedCount = "${passedCount}", timestamp=timestamp WHERE HOUR(timestamp) = 15;`
+    db.query(sqlPassedInsert, [passedCount, machine, employeeID], (err, result) => {
+        console.log(err)
+    });
+});
+
 app.listen(3001, () => {
     console.log("running on port 3001");
 });

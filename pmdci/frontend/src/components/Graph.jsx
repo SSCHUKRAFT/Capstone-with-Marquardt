@@ -172,7 +172,47 @@ function getFailedChartColors(expectedFailed, failedSumSix, failedSumSeven, fail
   return colors
 }
 
+function currentTime(date, prop){
+  if (date.getHours() === prop){
+    return 'rgba(0, 209, 251)'
+  }else{
+    return 'transparent'
+  }
+}
+
 const Graph = ({machine}) => {
+  const [date, setDate] = useState(new Date())
+  const styleSix = {
+    backgroundColor: currentTime(date, 6),
+  };
+  const styleSeven = {
+    backgroundColor: currentTime(date, 7),
+  };
+  const styleEight = {
+    backgroundColor: currentTime(date, 8),
+  };
+  const styleNine = {
+    backgroundColor: currentTime(date, 9),
+  };
+  const styleTen = {
+    backgroundColor: currentTime(date, 10),
+  };
+  const styleEleven = {
+    backgroundColor: currentTime(date, 11),
+  };
+  const styleTwelve = {
+    backgroundColor: currentTime(date, 12),
+  };
+  const styleThirteen = {
+    backgroundColor: currentTime(date, 13),
+  };
+  const styleFourteen = {
+    backgroundColor: currentTime(date, 14),
+  };
+  const styleFifteen = {
+    backgroundColor: currentTime(date, 15),
+  };
+  
   const [popup, setPopup] = useState(false);
   const [popupHour, setPopupHour] = useState();
   const [popupParts, setPopupParts] = useState();
@@ -330,6 +370,7 @@ const Graph = ({machine}) => {
 
   useEffect(() => {
     const id = setInterval(() => {  
+      setDate(new Date())
       Axios.get('http://localhost:3001/api/getPassedSum/six').then((response)=> {
         setPassedSumSix(response.data)
       })
@@ -415,7 +456,8 @@ const Graph = ({machine}) => {
     passedSumFourteen, passedSumFifteen, totalPassedSumSeven, totalPassedSumEight, totalPassedSumNine, totalPassedSumTen, totalPassedSumEleven, 
     totalPassedSumTwelve, totalPassedSumThirteen, totalPassedSumFourteen, totalPassedSumFifteen, failedSumSix, failedSumSeven, failedSumEight, 
     failedSumNine, failedSumTen, failedSumEleven, failedSumTwelve, failedSumThirteen, failedSumFourteen, failedSumFifteen, totalFailedSumSeven, 
-    totalFailedSumEight, totalFailedSumNine, totalFailedSumTen, totalFailedSumEleven, totalFailedSumTwelve, totalFailedSumThirteen, totalFailedSumFourteen, totalFailedSumFifteen]);
+    totalFailedSumEight, totalFailedSumNine, totalFailedSumTen, totalFailedSumEleven, totalFailedSumTwelve, totalFailedSumThirteen, totalFailedSumFourteen, 
+    totalFailedSumFifteen, date]);
   
   return (
     <div className="graph">
@@ -429,16 +471,16 @@ const Graph = ({machine}) => {
           <div className="passed_table">
             <table>
               <tr className="table_header">
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
-                <th>11</th>
-                <th>12</th>
-                <th>13</th>
-                <th>14</th>
-                <th>15</th>
+                <th style={styleSix}>6</th>
+                <th style={styleSeven}>7</th>
+                <th style={styleEight}>8</th>
+                <th style={styleNine}>9</th>
+                <th style={styleTen}>10</th>
+                <th style={styleEleven}>11</th>
+                <th style={styleTwelve}>12</th>
+                <th style={styleThirteen}>13</th>
+                <th style={styleFourteen}>14</th>
+                <th style={styleFifteen}>15</th>
               </tr>
               <tr className="parts_row">
                 <th>
@@ -489,16 +531,16 @@ const Graph = ({machine}) => {
           <div className="failed_table">
             <table>
               <tr className="table_header">
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
-                <th>11</th>
-                <th>12</th>
-                <th>13</th>
-                <th>14</th>
-                <th>15</th>
+                <th style={styleSix}>6</th>
+                <th style={styleSeven}>7</th>
+                <th style={styleEight}>8</th>
+                <th style={styleNine}>9</th>
+                <th style={styleTen}>10</th>
+                <th style={styleEleven}>11</th>
+                <th style={styleTwelve}>12</th>
+                <th style={styleThirteen}>13</th>
+                <th style={styleFourteen}>14</th>
+                <th style={styleFifteen}>15</th>
               </tr>
               <tr className="parts_row">
               <th>
@@ -547,10 +589,10 @@ const Graph = ({machine}) => {
             </table>
           </div>
         </div>
-        {/* <Edit hour={popupHour} parts={popupParts} trigger={popup} setTrigger={setPopup}></Edit> */}
-        <Popup visible={popup} onClose={() => setPopup(false)}>
+        <Edit hour={popupHour} parts={popupParts} trigger={popup} setTrigger={setPopup} machine={machine}></Edit>
+        {/* <Popup visible={popup} onClose={() => setPopup(false)}>
           <Edit hour={popupHour} parts={popupParts} trigger={popup} setTrigger={setPopup} />
-        </Popup>
+        </Popup> */}
         <div className="graphs">
           <div className="passed_graph">
             <Bar width="460" height="80" data={passedData} options={passedOptions} />
