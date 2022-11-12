@@ -1,7 +1,31 @@
 import os
+import shutil as sh
+import datetime
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 # arrays arrays for days
+
+def dbstore():
+    legacydata = os.listdir("legacyDatabases")
+    currentfile = "databaseCsv_" + str(datetime.date.today())
+    if currentfile in legacydata:
+        return None
+    else:
+        os.mkdir(os.path.join("legacyDatabases", currentfile))
+    sh.copy2("databaseCsv/pmdci_passed_data.csv", "legacyDatabases/" + currentfile)
+    sh.copy2("databaseCsv/pmdci_failed_data.csv", "legacyDatabases/" + currentfile)
+    sh.copy2("databaseCsv/pmdci_downtime_data.csv", "legacyDatabases/" + currentfile)
+    sh.copy2("databaseCsv/pmdci_retested_data.csv", "legacyDatabases/" + currentfile)
+    print("Today's data has been backed up")
+
+def grabdays(legacyfolder, timespan):
+    days=[]
+    x = 0
+    while x < timespan:
+        days.append((legacyfolder + "/" "databaseCsv_" + str(datetime.date.today() - datetime.timedelta(days=x))))
+        x = x + 1
+    return days
 
 # Combines relevant data and creates a list Matrices
 def mat(folder):
@@ -133,17 +157,43 @@ def consolidate(folder, position, extractval):
 
 # Calculate
 # respect weight of values.
-def ppmcalc(folder):
-    f = consolidate(folder, 1, 1)
+def ppcalc(folder):
     p = consolidate(folder, 2, 1)
     r = consolidate(folder, 3, 1)
     good = combine(p, r)
     results = []
     x = 0
     while x < good.__len__():
+        results.append(p[x]+r[x])
+        x = x + 1
+    return results
+
+def ftfcalc(folder):
+    f = consolidate(folder, 1, 1)
+    results = []
+    x = 0
+    while x < f.__len__():
         results.append(f[x])
         x = x + 1
     return results
+
+def ftfcalcoverall(legacyfolder, timespan):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(ochange(ftfcalc(fol[x])))
+        x = x + 1
+    return final
+
+def ppcalcoverall(legacyfolder, timespan):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(ochange(ppcalc(fol[x])))
+        x = x + 1
+    return final
 
 # This measure is a percentage based on “Operator Hours” vs “Productive Hours”
 # Operator Hours are the total number of hours booked to a line times the number of operators
@@ -175,11 +225,11 @@ def dtcalc(folder):
     return results
 
 # Graph
-def ppmgraph(folder):
+def ftfgraph(folder):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
     labels.remove("machine")
-    temp = ppmcalc(folder)
+    temp = ftfcalc(folder)
     results = []
     x = 0
     while x < temp.__len__():
@@ -257,7 +307,7 @@ def dtgraph(folder):
     print("downtime update")
 
 def collective(folder, te):
-    ppmgraph(folder)
+    ftfgraph(folder)
     prodgraph(folder, te)
     ttgraph(folder)
     dtgraph(folder)
@@ -267,7 +317,7 @@ def ppmcalcall(folderar):
     collection = []
     final = []
     while x < folderar.__len__():
-        collection.append(ppmcalc(folderar[x]))
+        collection.append(ftfcalc(folderar[x]))
         x = x + 1
     y = 0
     while y < folderar.__len__():
@@ -316,7 +366,7 @@ def dtcalcall(folderar):
         y = y + 1
     return final
 
-def ppmgraphar(folderar):
+def ftfgraphar(folderar):
     labels = []
     i = 0
     results = ppmcalcall(folderar)
@@ -422,13 +472,38 @@ def dtgraphar(folderar):
     print("downtime update")
 
 def collectivear(folderar, tear):
-    ppmgraphar(folderar)
+    ftfgraphar(folderar)
     prodgraphar(folderar, tear)
     ttgraphar(folderar)
     dtgraphar(folderar)
 
+def pfgraph(legacyfolder, timespan):
+    p = ppcalcoverall(legacyfolder, timespan)
+    f = ftfcalcoverall(legacyfolder, timespan)
+    temp = grabdays(legacyfolder, timespan)
+    x = 0
+    labels = []
+    while x < temp.__len__():
+        labels.append(temp[x][28:temp[x].__len__()])
+        x = x + 1
+    print(labels)
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)', name="Passed"))
+    fig.add_trace(go.Scatter(x=labels, y=f, text=f, line_color='rgb(100,0,0)', name="Failed"), secondary_y=True)
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(title="Part", title_font_color="white")
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/ppm.png")
+    print("parts updated")
+
 
 if __name__ == '__main__':
-    a = ["databaseCsv", "databaseCsvtest"]
+    a = ["databaseCsv", "databaseCsv_2022-11-08"]
     b = [[3000,2000], [1800,1000,2090]]
-    ttgraph(a[1])
+    dbstore()
+    print(ppcalcoverall("legacyDatabases", 4))
+    print(ftfcalcoverall("legacyDatabases", 4))
+    print("databaseCsv_2022-11-08"[12: 22])
+    pfgraph("legacyDatabases", 4)

@@ -3,12 +3,13 @@ import main
 
 app = Flask(__name__, template_folder="templates")
 data = "databaseCsv"
-data2 = "databaseCsvtest"
+data2 = "databaseCsv_2022-11-08"
 f1p = [3000,2000]
 f2p = [2000,1500,2090]
 
 @app.route("/")
 def index():
+    main.dbstore()
     return render_template("FrontEnd/LoginPage.html")
 
 
@@ -24,11 +25,11 @@ def mainpage():
     else:
         b = "green"
     return render_template("FrontEnd/f1/Mainpage.html",
-                           ppm=round(main.average(main.ppmcalc(data)), 2),
+                           ppm=round(main.average(main.ftfcalc(data)), 2),
                            pro=round(main.average(main.prodcalc(data, f1p)), 2),
                            tt=(main.ttcalc(data)[0]+(main.ttcalc(data)[1])),
                            dt=round(main.average(main.dtcalc(data))/6),
-                           w=round(main.ochange(main.ppmcalc(data))),
+                           w=round(main.ochange(main.ftfcalc(data))),
                            y=(main.ttcalc(data)[2]),
                            z=round(main.average(main.dtcalc(data))),
                            f="Floor 1",
@@ -36,11 +37,12 @@ def mainpage():
                            dtcolor=b,
                            ttgcolor="green",
                            ttfcolor="red",
-           )
+                           )
 
 @app.route("/ppm/")
 def ppm():
-    main.ppmgraph(data)
+    main.ftfgraph(data)
+    main.pfgraph("legacyDatabases", 4)
     return render_template("FrontEnd/f1/ppm.html")
 
 @app.route("/pro/")
@@ -70,11 +72,11 @@ def mainpage2():
     else:
         b = "green"
     return render_template("FrontEnd/f2/Mainpagef2.html",
-                           ppm=round(main.average(main.ppmcalc(data2)), 2),
+                           ppm=round(main.average(main.ftfcalc(data2)), 2),
                            pro=round(main.average(main.prodcalc(data2, f2p)), 2),
                            tt=(main.ttcalc(data2)[0] + (main.ttcalc(data2)[1])),
                            dt=round(main.average(main.dtcalc(data2))/6),
-                           w=round(main.ochange(main.ppmcalc(data2))),
+                           w=round(main.ochange(main.ftfcalc(data2))),
                            y=(main.ttcalc(data2)[2]),
                            z=round(main.average(main.dtcalc(data2))),
                            f="Floor 2",
@@ -82,11 +84,11 @@ def mainpage2():
                            dtcolor=b,
                            ttgcolor="green",
                            ttfcolor="red",
-           )
+                           )
 
 @app.route("/ppm2/")
 def ppm2():
-    main.ppmgraph(data2)
+    main.ftfgraph(data2)
     return render_template("FrontEnd/f2/ppm2.html")
 
 @app.route("/pro2/")
@@ -132,7 +134,7 @@ def mainpage3():
 
 @app.route("/ppm3/")
 def ppm3():
-    main.ppmgraphar([data, data2])
+    main.ftfgraphar([data, data2])
     return render_template("FrontEnd/f3/ppm2.html")
 
 @app.route("/pro3/")
@@ -162,11 +164,11 @@ def f1():
     else:
         b = "green"
     return render_template("FrontEnd/f1/Mainpage.html",
-                           ppm=round(main.average(main.ppmcalc(data)), 2),
+                           ppm=round(main.average(main.ftfcalc(data)), 2),
                            pro=round(main.average(main.prodcalc(data, f1p)), 2),
                            tt=(main.ttcalc(data)[0] + (main.ttcalc(data)[1])),
                            dt=round(main.average(main.dtcalc(data2))/6),
-                           w=round(main.ochange(main.ppmcalc(data))),
+                           w=round(main.ochange(main.ftfcalc(data))),
                            y=(main.ttcalc(data)[2]),
                            z=round(main.average(main.dtcalc(data))),
                            f="Floor 1",
@@ -188,11 +190,11 @@ def f2():
     else:
         b = "green"
     return render_template("FrontEnd/f2/Mainpagef2.html",
-                           ppm=round(main.average(main.ppmcalc(data2)), 2),
+                           ppm=round(main.average(main.ftfcalc(data2)), 2),
                            pro=round(main.average(main.prodcalc(data2, f2p)), 2),
                            tt=(main.ttcalc(data2)[0] + (main.ttcalc(data2)[1])),
                            dt=round(main.average(main.dtcalc(data2))/6),
-                           w=round(main.ochange(main.ppmcalc(data2))),
+                           w=round(main.ochange(main.ftfcalc(data2))),
                            y=(main.ttcalc(data2)[2]),
                            z=round(main.average(main.dtcalc(data2))),
                            f="Floor 2",

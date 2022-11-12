@@ -38,28 +38,21 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\databaseCsvtest\pmdci_downtime_data.csv">
+        <entry key="\legacyDatabases\databaseCsv_2022-11-09\pmdci_passed_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\databaseCsvtest\pmdci_failed_data.csv">
+        <entry key="\legacyDatabases\databaseCsv_2022-11-10\pmdci_passed_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\databaseCsvtest\pmdci_passed_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\databaseCsvtest\pmdci_retested_data.csv">
+        <entry key="\legacyDatabases\databaseCsv_2022-11-11\pmdci_failed_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
