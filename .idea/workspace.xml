@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Fixed individual floor and data points, reconstructed page aspects and calculations">
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pmdci/frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pmdci/frontend/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_2_2022_8_17_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_2_2022_8_17_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
