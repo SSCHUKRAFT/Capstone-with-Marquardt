@@ -6,25 +6,37 @@ from plotly.subplots import make_subplots
 
 # arrays arrays for days
 
-def dbstore():
-    legacydata = os.listdir("legacyDatabases")
+def dbstore(folder, legacyfolder):
+    legacydata = os.listdir(legacyfolder)
     currentfile = "databaseCsv_" + str(datetime.date.today())
     if currentfile in legacydata:
-        return None
+        sh.copy2(folder + "/pmdci_passed_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_failed_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_downtime_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_retested_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_settings_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_employee_data.csv", legacyfolder + "/" + currentfile)
     else:
-        os.mkdir(os.path.join("legacyDatabases", currentfile))
-    sh.copy2("databaseCsv/pmdci_passed_data.csv", "legacyDatabases/" + currentfile)
-    sh.copy2("databaseCsv/pmdci_failed_data.csv", "legacyDatabases/" + currentfile)
-    sh.copy2("databaseCsv/pmdci_downtime_data.csv", "legacyDatabases/" + currentfile)
-    sh.copy2("databaseCsv/pmdci_retested_data.csv", "legacyDatabases/" + currentfile)
+        os.mkdir(os.path.join(legacyfolder, currentfile))
+        sh.copy2(folder + "/pmdci_passed_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_failed_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_downtime_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_retested_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_settings_data.csv", legacyfolder + "/" + currentfile)
+        sh.copy2(folder + "/pmdci_employee_data.csv", legacyfolder + "/" + currentfile)
     print("Today's data has been backed up")
 
 def grabdays(legacyfolder, timespan):
     days=[]
     x = 0
-    while x < timespan:
-        days.append((legacyfolder + "/" "databaseCsv_" + str(datetime.date.today() - datetime.timedelta(days=x))))
-        x = x + 1
+    if timespan <= os.listdir(legacyfolder).__len__():
+        while x < timespan:
+            days.append((legacyfolder + "/" "databaseCsv_" + str(datetime.date.today() - datetime.timedelta(days=x))))
+            x = x + 1
+    else:
+        while x < os.listdir(legacyfolder).__len__():
+            days.append((legacyfolder + "/" "databaseCsv_" + str(datetime.date.today() - datetime.timedelta(days=x))))
+            x = x + 1
     return days
 
 # Combines relevant data and creates a list Matrices
@@ -72,12 +84,27 @@ def average(array):
 def combine(array1, array2):
     final = []
     x = 0
-    while x < array1.__len__():
-        final.append((array1[x]+array2[x]))
-        x = x + 1
+    if array1.__len__() < array2.__len__():
+        while x < array1.__len__():
+            final.append((array1[x] + array2[x]))
+            x = x + 1
+        while x < array2.__len__():
+            final.append((array2[x]))
+            x = x + 1
+    elif array1.__len__() > array2.__len__():
+        while x < array2.__len__():
+            final.append((array1[x] + array2[x]))
+            x = x + 1
+        while x < array1.__len__():
+            final.append((array1[x]))
+            x = x + 1
+    else:
+        while x < array1.__len__():
+            final.append((array1[x] + array2[x]))
+            x = x + 1
     return final
 
-def ochange(array):
+def add(array):
     x = 0
     y = 0
     while x < array.__len__():
@@ -156,20 +183,20 @@ def consolidate(folder, position, extractval):
     return final
 
 # Calculate
-# respect weight of values.
+def thresholds(folder):
+    p = consolidate(folder, 5, 2)
+    f = consolidate(folder, 5, 3)
+    return [p, f]
+
 def ppcalc(folder):
-    p = consolidate(folder, 2, 1)
-    r = consolidate(folder, 3, 1)
-    good = combine(p, r)
-    results = []
+    p = consolidate(folder, 3, 1)
+    r = consolidate(folder, 4, 1)
+    results = combine(p, r)
     x = 0
-    while x < good.__len__():
-        results.append(p[x]+r[x])
-        x = x + 1
     return results
 
 def ftfcalc(folder):
-    f = consolidate(folder, 1, 1)
+    f = consolidate(folder, 2, 1)
     results = []
     x = 0
     while x < f.__len__():
@@ -182,7 +209,7 @@ def ftfcalcoverall(legacyfolder, timespan):
     x = 0
     final = []
     while x < fol.__len__():
-        final.append(ochange(ftfcalc(fol[x])))
+        final.append(add(ftfcalc(fol[x])))
         x = x + 1
     return final
 
@@ -191,7 +218,34 @@ def ppcalcoverall(legacyfolder, timespan):
     x = 0
     final = []
     while x < fol.__len__():
-        final.append(ochange(ppcalc(fol[x])))
+        final.append(add(ppcalc(fol[x])))
+        x = x + 1
+    return final
+
+def prodcalcoverall(legacyfolder, timespan, te):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(average(prodcalc(fol[x], te)))
+        x = x + 1
+    return final
+
+def dtcalcoverall(legacyfolder, timespan):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(average(consolidate(fol[x], 0, 1)))
+        x = x + 1
+    return final
+
+def escalcoverall(legacyfolder, timespan):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(average(consolidate(fol[x], 0, 2)))
         x = x + 1
     return final
 
@@ -216,7 +270,7 @@ def ttcalc(folder):
     f = consolidate(folder, 1, 1)
     p = consolidate(folder, 2, 1)
     r = consolidate(folder, 3, 1)
-    return [ochange(p), ochange(r), ochange(f)]
+    return [add(p), add(r), add(f)]
 
 def dtcalc(folder):
     dt = consolidate(folder, 0, 1)
@@ -225,7 +279,7 @@ def dtcalc(folder):
     return results
 
 # Graph
-def ftfgraph(folder):
+def ftfgraphold(folder):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
     labels.remove("machine")
@@ -243,7 +297,7 @@ def ftfgraph(folder):
     fig.write_image("static/img/ppm.png")
     print("ppm updated")
 
-def prodgraph(folder, te):
+def prodgraphold(folder, te):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
     labels.remove("machine")
@@ -264,7 +318,7 @@ def prodgraph(folder, te):
     fig.write_image("static/img/pro.png")
     print("productivity updated")
 
-def ttgraph(folder):
+def ttgraphold(folder):
     data = mat(folder)[2]
     labels = [*set(column(data, (data[0].__len__() - 3)))]
     labels.remove("machine")
@@ -282,7 +336,7 @@ def ttgraph(folder):
     fig.write_image("static/img/tt.png")
     print("Total Throughput updated")
 
-def dtgraph(folder):
+def dtgraphold(folder):
     data = mat(folder)[0]
     labels = [*set(column(data, (data[0].__len__()-3)))]
     labels.remove("machine")
@@ -306,11 +360,11 @@ def dtgraph(folder):
     fig.write_image("static/img/dt.png")
     print("downtime update")
 
-def collective(folder, te):
-    ftfgraph(folder)
-    prodgraph(folder, te)
-    ttgraph(folder)
-    dtgraph(folder)
+def collective(folder, te, time):
+    ftfgraph(folder, time)
+    prodgraph(folder, time, te)
+    ttgraph(folder, time)
+    dtgraph(folder, time)
 
 def ppmcalcall(folderar):
     x = 0
@@ -321,7 +375,7 @@ def ppmcalcall(folderar):
         x = x + 1
     y = 0
     while y < folderar.__len__():
-        final.append(ochange(collection[y]))
+        final.append(add(collection[y]))
         y = y + 1
     return final
 
@@ -477,33 +531,111 @@ def collectivear(folderar, tear):
     ttgraphar(folderar)
     dtgraphar(folderar)
 
-def pfgraph(legacyfolder, timespan):
+def ftfgraph(legacyfolder, timespan):
     p = ppcalcoverall(legacyfolder, timespan)
     f = ftfcalcoverall(legacyfolder, timespan)
+    temp = grabdays(legacyfolder, timespan)
+    exp = []
+    exp2 = []
+    x = 0
+    labels = []
+    while x < temp.__len__():
+        labels.append(temp[x][temp[x].__len__()-8:temp[x].__len__()])
+        exp.append(p[x]-average(p))
+        exp2.append(f[x] + average(f))
+        x = x + 1
+    i = 0
+    while i < exp.__len__():
+        if exp[i] < 0:
+            exp[i] = 0
+        i = i + 1
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)', name="Passed"))
+    fig.add_trace(go.Scatter(x=labels, y=exp, text=p, line_color='rgba(0,0,0,0)', showlegend=False))
+    fig.add_trace(go.Scatter(x=labels, y=exp2, text=p, line_color='rgba(0,0,0,0)', showlegend=False), secondary_y=True)
+    fig.add_trace(go.Scatter(x=labels, y=f, text=f, line_color='rgb(100,0,0)', name="Failed"), secondary_y=True)
+    fig.update_layout(title="First Time Failures", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(legend=dict(font=dict(color="white")))
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.update_yaxes(gridcolor='rgb(50,50,50)', secondary_y=True)
+    fig.write_image("static/img/ppm.png")
+    print("parts updated")
+
+def prodgraph(legacyfolder, timespan, te):
+    p = prodcalcoverall(legacyfolder, timespan, te)
+    temp = grabdays(legacyfolder, timespan)
+    x = 0
+    labels = []
+    hun = []
+    eighty = []
+    while x < temp.__len__():
+        labels.append(temp[x][temp[x].__len__()-8:temp[x].__len__()])
+        hun.append(100)
+        eighty.append(85)
+        x = x + 1
+    fig = make_subplots()
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,0,150)', name="Productivity", showlegend=False))
+    fig.add_trace(go.Scatter(x=labels, y=hun, line_color='rgb(0,150,0)', name="100% Productivity"))
+    fig.add_trace(go.Scatter(x=labels, y=eighty, line_color='rgb(150,0,0)', name="85% Productivity"))
+    fig.update_layout(title="Productivity", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(legend=dict(font=dict(color="white")))
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/pro.png")
+    print("Productivity updated")
+
+def ttgraph(legacyfolder, timespan):
+    p = ppcalcoverall(legacyfolder, timespan)
     temp = grabdays(legacyfolder, timespan)
     x = 0
     labels = []
     while x < temp.__len__():
-        labels.append(temp[x][28:temp[x].__len__()])
+        labels.append(temp[x][temp[x].__len__()-8:temp[x].__len__()])
         x = x + 1
-    print(labels)
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)', name="Passed"))
-    fig.add_trace(go.Scatter(x=labels, y=f, text=f, line_color='rgb(100,0,0)', name="Failed"), secondary_y=True)
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)'))
+    fig.update_layout(title="Total Throughput", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)',
+                      plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
                       height=600)
-    fig.update_layout(title="Part", title_font_color="white")
+    fig.update_layout(legend=dict(font=dict(color="white")))
     fig.update_xaxes(color='white')
     fig.update_yaxes(color='white')
-    fig.write_image("static/img/ppm.png")
-    print("parts updated")
+    fig.write_image("static/img/tt.png")
+    print("Tt updated")
 
+def dtgraph(legacyfolder, timespan):
+    p = dtcalcoverall(legacyfolder, timespan)
+    e = escalcoverall(legacyfolder, timespan)
+    temp = grabdays(legacyfolder, timespan)
+    x = 0
+    labels = []
+    while x < temp.__len__():
+        labels.append(temp[x][temp[x].__len__()-8:temp[x].__len__()])
+        x = x + 1
+    fig = make_subplots()
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,0,150)', name="Downtime"))
+    fig.add_trace(go.Scatter(x=labels, y=e, text=e, line_color='rgb(150,75,50)', name="Escalation time"))
+    fig.update_layout(title="Downtime", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)',
+                      plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(legend=dict(font=dict(color="white")))
+    fig.update_xaxes(color='white')
+    fig.update_yaxes(color='white')
+    fig.write_image("static/img/dt.png")
+    print("Downtime updated")
 
 if __name__ == '__main__':
     a = ["databaseCsv", "databaseCsv_2022-11-08"]
     b = [[3000,2000], [1800,1000,2090]]
-    dbstore()
-    print(ppcalcoverall("legacyDatabases", 4))
-    print(ftfcalcoverall("legacyDatabases", 4))
-    print("databaseCsv_2022-11-08"[12: 22])
-    pfgraph("legacyDatabases", 4)
+    dbstore(a[0], "legacyDatabases")
+    print(ppcalcoverall("legacyDatabases", 30))
+    print(ftfcalcoverall("legacyDatabases", 5))
+    print(prodcalcoverall("legacyDatabases", 4, [9000, 1000, 2]))
+    print(ppcalcoverall("legacyDatabases", 30))
+    ftfgraph("legacyDatabases", 4)
+    prodgraph("legacyDatabases", 4, [9000, 2000, 2])
+    ttgraph("legacyDatabases", 30)
+    dtgraph("legacyDatabases", 4)

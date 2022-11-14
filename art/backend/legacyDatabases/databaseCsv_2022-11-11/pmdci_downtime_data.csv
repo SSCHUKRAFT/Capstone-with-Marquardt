@@ -1,3 +1,5 @@
 ,downtime,escalation time,error code,description,machine,employeeID,timestamp
-0,40,15,100 - Machine Fire,Help! Machine is on fire!!,Machine One,,2022-10-21 11:25:05
-1,5,0,101 - Tripped,Tripped and sprained ankle.,Machine Two,,2022-10-21 11:28:00
+0,40,15,100 - Machine Fire,Help! Machine is on fire!!,Cadillac,,2022-10-21 11:25:05
+1,5,0,101 - Tripped,Tripped and sprained ankle.,Ford,,2022-10-21 12:28:00
+2,5,0,101 - Tripped,Tripped and sprained ankle.,Cadillac,,2022-10-21 11:28:00
+3,35,0,101 - Tripped,Tripped and sprained ankle.,Ford,,2022-10-21 11:28:00
