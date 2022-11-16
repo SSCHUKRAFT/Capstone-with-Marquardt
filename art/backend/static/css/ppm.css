@@ -94,21 +94,25 @@
 	.nav-links li:hover ~ .active{
 		display:block;
 	}
-	.nav-links li:nth-child(1):hover ~.active{
+    .nav-links li:nth-child(1):hover ~.active{
 		top:2.6%;
 	}
 	.nav-links li:nth-child(2):hover ~.active{
-		top:22.6%;
+		top:20%;
 	}
 	.nav-links li:nth-child(3):hover ~.active{
-		top:42.6%;
+		top:37%;
 	}
 	.nav-links li:nth-child(4):hover ~.active{
-		top:62.6%;
+		top:53%;
 	}
 	.nav-links li:nth-child(5):hover ~.active{
-		top:82.6%;
+		top:69%;
 	}
+	.nav-links li:nth-child(6):hover ~.active{
+		top:85%;
+	}
+
 	
 	/* Popup for raw data */
 	.container{

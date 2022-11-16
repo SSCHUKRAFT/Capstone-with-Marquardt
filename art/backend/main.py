@@ -183,10 +183,39 @@ def consolidate(folder, position, extractval):
     return final
 
 # Calculate
-def thresholds(folder):
-    p = consolidate(folder, 5, 2)
-    f = consolidate(folder, 5, 3)
-    return [p, f]
+def passthresholds(folder):
+    x = 2
+    final = []
+    while x < 12:
+        final.append(add(consolidate(folder, 5, x)))
+        x = x + 1
+    return final
+
+def failthresholds(folder):
+    x = 13
+    final = []
+    while x < 23:
+        final.append(add(consolidate(folder, 5, x)))
+        x = x + 1
+    return final
+
+def pt(legacyfolder, timespan):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(add(passthresholds(fol[x])))
+        x = x + 1
+    return final
+
+def ft(legacyfolder, timespan):
+    fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(add(failthresholds(fol[x])))
+        x = x + 1
+    return final
 
 def ppcalc(folder):
     p = consolidate(folder, 3, 1)
@@ -202,6 +231,26 @@ def ftfcalc(folder):
     while x < f.__len__():
         results.append(f[x])
         x = x + 1
+    return results
+
+def prodcalc(folder, te):
+    x = 0
+    workhours = 10
+    pdata = consolidate(folder, 2, 1)
+    op = (workhours-.25) * pdata.__len__()
+    values = []
+    while x < pdata.__len__():
+        tes = te[x]/1000*60
+        st = (tes*pdata[x])/(3600)
+        p = st/op
+        values.append(p * 100)
+        x = x + 1
+    return values
+
+def dtcalc(folder):
+    dt = consolidate(folder, 0, 1)
+    et = consolidate(folder, 0, 2)
+    results = combine(dt, et)
     return results
 
 def ftfcalcoverall(legacyfolder, timespan):
@@ -252,119 +301,7 @@ def escalcoverall(legacyfolder, timespan):
 # This measure is a percentage based on “Operator Hours” vs “Productive Hours”
 # Operator Hours are the total number of hours booked to a line times the number of operators
 # Productive Hours are a relationship of total parts made vs the takt time
-def prodcalc(folder, te):
-    x = 0
-    workhours = 10
-    pdata = consolidate(folder, 2, 1)
-    op = (workhours-.25) * pdata.__len__()
-    values = []
-    while x < pdata.__len__():
-        tes = te[x]/1000*60
-        st = (tes*pdata[x])/(3600)
-        p = st/op
-        values.append(p * 100)
-        x = x + 1
-    return values
-
-def ttcalc(folder):
-    f = consolidate(folder, 1, 1)
-    p = consolidate(folder, 2, 1)
-    r = consolidate(folder, 3, 1)
-    return [add(p), add(r), add(f)]
-
-def dtcalc(folder):
-    dt = consolidate(folder, 0, 1)
-    et = consolidate(folder, 0, 2)
-    results = combine(dt, et)
-    return results
-
 # Graph
-def ftfgraphold(folder):
-    data = mat(folder)[2]
-    labels = [*set(column(data, (data[0].__len__() - 3)))]
-    labels.remove("machine")
-    temp = ftfcalc(folder)
-    results = []
-    x = 0
-    while x < temp.__len__():
-        results.append(str(round(temp[x], 2)))
-        x = x + 1
-    fig = go.Figure(data=[go.Bar(x=labels, y=temp, text=results, textposition='auto')])
-    fig.update_layout( paper_bgcolor= 'rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
-    fig.update_layout(title="PPM", title_font_color="white")
-    fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
-    fig.write_image("static/img/ppm.png")
-    print("ppm updated")
-
-def prodgraphold(folder, te):
-    data = mat(folder)[2]
-    labels = [*set(column(data, (data[0].__len__() - 3)))]
-    labels.remove("machine")
-    x = 0
-    y = prodcalc(folder, te)
-    temp = []
-    while x < y.__len__():
-        temp.append(str(round(y[x], 2))+"%")
-        x = x + 1
-    fig = go.Figure(data=[go.Table(header=dict(values=["Machine", 'Productivity']),
-                                   cells=dict(
-                                       values=[labels, temp],
-                                       font_color= ['rgb(0, 0, 0)',
-                                        ['rgba(0,172,32, 0.8)' if val >= 85 else 'rgba(175,5,0, 0.8)' for val in y] ]
-                                   ))])
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-    fig.update_layout(title="Productivity", title_font_color="white")
-    fig.write_image("static/img/pro.png")
-    print("productivity updated")
-
-def ttgraphold(folder):
-    data = mat(folder)[2]
-    labels = [*set(column(data, (data[0].__len__() - 3)))]
-    labels.remove("machine")
-    f = consolidate(folder, 1, 1)
-    p = consolidate(folder, 2, 1)
-    r = consolidate(folder, 3, 1)
-    fig = go.Figure(data=[go.Bar(name="Passed", marker_color='rgb(0,172,32)', x=labels, y=p, text=p, textposition='auto'),
-                          go.Bar(name="ReTested", marker_color='rgb(0,32,172)', x=labels, y=r, text=r, textposition='auto'),
-                          go.Bar(name="Failed", marker_color='rgb(175,5,0)', x=labels, y=f, text=f, textposition='auto')])
-    fig.update_layout(title="Total Throughput", title_font_color="white", barmode='stack')
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
-    fig.update_traces(marker_line_color='rgb(8,48,107)')
-    fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
-    fig.write_image("static/img/tt.png")
-    print("Total Throughput updated")
-
-def dtgraphold(folder):
-    data = mat(folder)[0]
-    labels = [*set(column(data, (data[0].__len__()-3)))]
-    labels.remove("machine")
-    x = 0
-    y = consolidate(folder, 0, 1)
-    w = consolidate(folder, 0, 2)
-    z = []
-    while x < y.__len__():
-        labels.append("Op "+str(x+1))
-        z.append(600-y[x]-w[x])
-        x = x + 1
-    fig = go.Figure(data=[go.Bar(name="Remaining time", marker_color='rgb(0,172,23)', x=labels, y=z, text=z, textposition='auto'),
-                          go.Bar(name="Escalation time", marker_color='rgb(227,234,0)', x=labels, y=w, text=w, textposition='auto'),
-                          go.Bar(name="Downtime", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'),
-                          ])
-    fig.update_layout(title="Downtime", title_font_color="white", barmode='stack')
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
-    fig.update_traces(marker_line_color='rgb(8,48,107)')
-    fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
-    fig.write_image("static/img/dt.png")
-    print("downtime update")
-
-def collective(folder, te, time):
-    ftfgraph(folder, time)
-    prodgraph(folder, time, te)
-    ttgraph(folder, time)
-    dtgraph(folder, time)
 
 def ppmcalcall(folderar):
     x = 0
@@ -391,21 +328,6 @@ def prodcalcall(folderar, tear):
         final.append(average(collection[y]))
         y = y + 1
     return final
-
-def ttcalcall(folderar):
-    x = 0
-    collection = []
-    final =[]
-    while x < folderar.__len__():
-        collection.append(ttcalc(folderar[x]))
-        x = x + 1
-    y = 1
-    i = 0
-    while y < folderar.__len__():
-        final = combine(collection[i], collection[y])
-        y = y + 1
-        i = i + 1
-    return [collection, final]
 
 def dtcalcall(folderar):
     x = 0
@@ -462,29 +384,6 @@ def prodgraphar(folderar, tear):
     fig.write_image("static/img/pro.png")
     print("productivity updated")
 
-def ttgraphar(folderar):
-    labels = []
-    i = 0
-    temp = folderar
-    while i < temp.__len__():
-        labels.append("Floor " + str(i+1))
-        i = i + 1
-    data = ttcalcall(folderar)[0]
-    p = column(data, 0)
-    r = column(data, 1)
-    f = column(data, 2)
-    fig = go.Figure(
-        data=[go.Bar(name="Passed", marker_color='rgb(0,172,32)', x=labels, y=p, text=p, textposition='auto'),
-              go.Bar(name="ReTested", marker_color='rgb(0,32,172)', x=labels, y=r, text=r, textposition='auto'),
-              go.Bar(name="Failed", marker_color='rgb(175,5,0)', x=labels, y=f, text=f, textposition='auto')])
-    fig.update_layout(title="Collective Total Throughput", title_font_color="white", barmode='stack')
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
-    fig.update_traces(marker_line_color='rgb(8,48,107)')
-    fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
-    fig.write_image("static/img/tt.png")
-    print("Total Throughput updated")
-
 def dtgraphar(folderar):
     labels = []
     i = 0
@@ -528,12 +427,13 @@ def dtgraphar(folderar):
 def collectivear(folderar, tear):
     ftfgraphar(folderar)
     prodgraphar(folderar, tear)
-    ttgraphar(folderar)
     dtgraphar(folderar)
 
 def ftfgraph(legacyfolder, timespan):
     p = ppcalcoverall(legacyfolder, timespan)
     f = ftfcalcoverall(legacyfolder, timespan)
+    ptt = pt(legacyfolder, timespan)
+    ftt = ft(legacyfolder, timespan)
     temp = grabdays(legacyfolder, timespan)
     exp = []
     exp2 = []
@@ -550,16 +450,20 @@ def ftfgraph(legacyfolder, timespan):
             exp[i] = 0
         i = i + 1
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)', name="Passed"))
+    fig.add_trace(go.Scatter(x=labels, y=ptt, text=ptt, line_color='rgb(0,200,0)', name="Expected Throughput"))
+    fig.add_trace(go.Scatter(x=labels, y=ftt, text=ftt, line_color='rgb(200,0,0)', name="Expected Failed"), secondary_y=True)
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)', name="Actual Throughput"))
     fig.add_trace(go.Scatter(x=labels, y=exp, text=p, line_color='rgba(0,0,0,0)', showlegend=False))
     fig.add_trace(go.Scatter(x=labels, y=exp2, text=p, line_color='rgba(0,0,0,0)', showlegend=False), secondary_y=True)
-    fig.add_trace(go.Scatter(x=labels, y=f, text=f, line_color='rgb(100,0,0)', name="Failed"), secondary_y=True)
-    fig.update_layout(title="First Time Failures", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+    fig.add_trace(go.Scatter(x=labels, y=f, text=f, line_color='rgb(100,0,0)', name="Actual Failed"), secondary_y=True)
+    fig.update_layout(title="First Time Failures & Total Throughput", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
                       height=600)
     fig.update_layout(legend=dict(font=dict(color="white")))
     fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
-    fig.update_yaxes(gridcolor='rgb(50,50,50)', secondary_y=True)
+    fig.update_yaxes(color='white', title="Throughput")
+    fig.update_yaxes(gridcolor='rgb(50,50,50)', title="Failed", secondary_y=True)
+    fig.update_yaxes(rangemode='tozero', constraintoward='bottom')
+    fig.update_yaxes(rangemode='tozero', constraintoward='bottom', secondary_y=True)
     fig.write_image("static/img/ppm.png")
     print("parts updated")
 
@@ -587,25 +491,6 @@ def prodgraph(legacyfolder, timespan, te):
     fig.write_image("static/img/pro.png")
     print("Productivity updated")
 
-def ttgraph(legacyfolder, timespan):
-    p = ppcalcoverall(legacyfolder, timespan)
-    temp = grabdays(legacyfolder, timespan)
-    x = 0
-    labels = []
-    while x < temp.__len__():
-        labels.append(temp[x][temp[x].__len__()-8:temp[x].__len__()])
-        x = x + 1
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)'))
-    fig.update_layout(title="Total Throughput", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)',
-                      plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
-                      height=600)
-    fig.update_layout(legend=dict(font=dict(color="white")))
-    fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
-    fig.write_image("static/img/tt.png")
-    print("Tt updated")
-
 def dtgraph(legacyfolder, timespan):
     p = dtcalcoverall(legacyfolder, timespan)
     e = escalcoverall(legacyfolder, timespan)
@@ -627,15 +512,15 @@ def dtgraph(legacyfolder, timespan):
     fig.write_image("static/img/dt.png")
     print("Downtime updated")
 
+def collective(folder, te, time):
+    ftfgraph(folder, time)
+    prodgraph(folder, time, te)
+    dtgraph(folder, time)
+
 if __name__ == '__main__':
-    a = ["databaseCsv", "databaseCsv_2022-11-08"]
+    a = ["databaseCsv", "databaseCsvtest"]
     b = [[3000,2000], [1800,1000,2090]]
+    c = ["legacyDatabases", "legacyDatabasestest"]
     dbstore(a[0], "legacyDatabases")
-    print(ppcalcoverall("legacyDatabases", 30))
-    print(ftfcalcoverall("legacyDatabases", 5))
-    print(prodcalcoverall("legacyDatabases", 4, [9000, 1000, 2]))
-    print(ppcalcoverall("legacyDatabases", 30))
-    ftfgraph("legacyDatabases", 4)
-    prodgraph("legacyDatabases", 4, [9000, 2000, 2])
-    ttgraph("legacyDatabases", 30)
-    dtgraph("legacyDatabases", 4)
+    ftfgraph(c[0], 10)
+    #collective(c[0], b[1], 10)

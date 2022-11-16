@@ -113,17 +113,21 @@
 		top:2.6%;
 	}
 	.nav-links li:nth-child(2):hover ~.active{
-		top:22.6%;
+		top:20%;
 	}
 	.nav-links li:nth-child(3):hover ~.active{
-		top:42.6%;
+		top:37%;
 	}
 	.nav-links li:nth-child(4):hover ~.active{
-		top:62.6%;
+		top:53%;
 	}
 	.nav-links li:nth-child(5):hover ~.active{
-		top:82.6%;
+		top:69%;
 	}
+	.nav-links li:nth-child(6):hover ~.active{
+		top:85%;
+	}
+
 
 	/* Popup for raw data */
 	.container{
@@ -147,7 +151,6 @@
 		box-shadow: 0 9px #999;
 		position:absolute;
 		top:20px;
-		right:47%;
 }
 	.btn:hover{
 		background-color: #e2e9f7
@@ -283,32 +286,7 @@
 		box-shadow: 0 5px #666;
 		transform: translateY(4px);
 	}
-	/* for display2 */
-		.btn5{
-		padding: 15px 25px;
-		font-size: 15px;
-		text-align: center;
-		cursor: pointer;
-		outline: none;
-		color: #009a9c;
-		background-color: #e2e9f7;
-		border: none;
-		border-radius: 15px;
-		box-shadow: 0 9px #999;
-		position:absolute;
-		width:300px;
-		height:200px;
-		top:450px;
-		left: 27%;
-}
-	.btn5:hover{
-		background-color: #e2e9f7;
-}
-	.btn5:active {
-		background-color: #6fd649;
-		box-shadow: 0 5px #666;
-		transform: translateY(4px);
-	}
+
 	/* for display3 */
 		.btn6{
 		padding: 15px 25px;
@@ -325,7 +303,7 @@
 		width:300px;
 		height:200px;
 		top:448px;
-		left: 55%
+		left: 41%
 }
 	.btn6:hover{
 		background-color: #e2e9f7;
