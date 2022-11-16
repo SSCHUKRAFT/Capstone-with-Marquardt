@@ -1,4 +1,5 @@
 import './header.css';
+import React from "react";
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import { TextField } from "@mui/material";
@@ -20,7 +21,7 @@ const Header = ({setMachine}, {setLanguage}) => {
   return (
     <div className="header">
       <div className="machine">
-        <p>Welcome John, you are currently operating machine:</p>
+        <p>Welcome John, you are currently working with part family:</p>
         <Box className="machine_select">
           <TextField
             inputRef={machineRef}

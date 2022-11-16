@@ -5,7 +5,6 @@ import { Bar } from "react-chartjs-2";
 import { Chart, CategoryScale, LinearScale, BarElement } from "chart.js";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Edit from './Edit.jsx';
-import Popup from 'react-animated-popup'
 
 Chart.register(CategoryScale, LinearScale, BarElement, ChartDataLabels)
 Chart.defaults.set('plugins.datalabels', {
@@ -590,9 +589,6 @@ const Graph = ({machine}) => {
           </div>
         </div>
         <Edit hour={popupHour} parts={popupParts} trigger={popup} setTrigger={setPopup} machine={machine}></Edit>
-        {/* <Popup visible={popup} onClose={() => setPopup(false)}>
-          <Edit hour={popupHour} parts={popupParts} trigger={popup} setTrigger={setPopup} />
-        </Popup> */}
         <div className="graphs">
           <div className="passed_graph">
             <Bar width="460" height="80" data={passedData} options={passedOptions} />

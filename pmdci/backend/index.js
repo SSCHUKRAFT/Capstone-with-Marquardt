@@ -160,6 +160,28 @@ app.get("/api/getFailedSum/fifteen", (req, res) => {
     });
 });
 
+app.get("/api/getEngineers", (req, res) => {
+    const sqlSelect = "SELECT employeeID FROM pmdci_db.employees WHERE position = 'Process Engineer';";
+    db.query(sqlSelect, (err, result) => {
+        const engineers = []
+        for (let i = 0; i < result.length; i++){
+            engineers.push(result[i].employeeID)
+        }
+        res.send(engineers)
+    });
+});
+
+app.get("/api/getOperators", (req, res) => {
+    const sqlSelect = "SELECT employeeID FROM pmdci_db.employees WHERE position = 'Operator';";
+    db.query(sqlSelect, (err, result) => {
+        const operators = []
+        for (let i = 0; i < result.length; i++){
+            operators.push(result[i].employeeID)
+        }
+        res.send(operators)
+    });
+});
+
 app.post("/api/insert/passed", (req, res) => {
     const passedCount = req.body.passedCount
     const machine = req.body.machine

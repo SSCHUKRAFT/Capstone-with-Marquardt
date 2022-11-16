@@ -1,12 +1,26 @@
-.downtime {
+.everything_downtime {
     width: 100%;
     height: 34%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.downtime {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-right: 50px;
-    margin-left: 50px;
+    margin-left: 125px;
+}
+
+.edit_window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .downtime_data {
@@ -52,6 +66,13 @@
     display: grid;
     justify-content: left;
     grid-template-rows: repeat(auto-fit,  minmax(10px, max-content))
+}
+
+.downtime_btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
 }
 
 .downtime_enter_btn {
