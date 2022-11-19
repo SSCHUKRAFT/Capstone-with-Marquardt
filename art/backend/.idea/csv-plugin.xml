@@ -3,6 +3,55 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\databaseCsv\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\databaseCsv\pmdci_settings_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\databaseCsvtest\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\databaseCsvtest\pmdci_settings_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-11-10\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-11-10\pmdci_settings_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-11-11\pmdci_settings_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\legacyDatabases\databaseCsv_2022-11-12\pmdci_downtime_data.csv">
           <value>
             <Attribute>
@@ -179,6 +228,20 @@
           </value>
         </entry>
         <entry key="\legacyDatabases\databaseCsv_2022-11-16\pmdci_settings_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-11-17\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\set.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

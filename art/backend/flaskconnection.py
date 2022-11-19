@@ -3,6 +3,7 @@ import main
 
 app = Flask(__name__, template_folder="templates")
 data = "databaseCsv"
+data2 = "databaseCsvtest"
 ldata = "legacyDatabases"
 ldata2 = "legacyDatabasestest"
 time = 10
@@ -11,22 +12,22 @@ f2p = [30000,40000,80000]
 
 @app.route("/")
 def index():
-    
     main.dbstore(data, ldata)
+    main.dbstore(data2,ldata2)
     return render_template("FrontEnd/LoginPage.html")
 
 
 @app.route("/Main/")
 def mainpage():
-    main.collective(ldata, f2p, time)
-    if (main.average(main.prodcalcoverall(ldata, time, f2p))) < 85:
-        g = "red"
-    else:
-        g = "green"
-    if main.average(main.dtcalcoverall(ldata, time))/6 > 10:
-        b = "red"
-    else:
-        b = "green"
+    main.collective(ldata, time)
+    #if (main.average(main.prodcalcoverall(ldata, time, f2p))) < 85:
+    #    g = "red"
+    #else:
+    #    g = "green"
+    #if main.average(main.dtcalcoverall(ldata, time))/6 > 10:
+    #    b = "red"
+    #else:
+    #    b = "green"
     return render_template("FrontEnd/f1/Mainpage.html",
                            #ppm=round(main.average(main.ftfcalcoverall(ldata, time)), 2),
                            #pro=round(main.average(main.prodcalcoverall(ldata, time, f2p)), 2),
@@ -45,7 +46,7 @@ def ppm():
 
 @app.route("/pro/")
 def pro():
-    main.prodgraph(ldata, time, f2p)
+    main.prodgraph(ldata, time)
     return render_template("FrontEnd/f1/pro.html")
 
 
@@ -56,15 +57,15 @@ def downtime():
 
 @app.route("/Main2/")
 def mainpage2():
-    main.collective(ldata, f2p, time)
-    if (main.average(main.prodcalc(ldata2, f2p))) < 85:
-        g = "red"
-    else:
-        g = "green"
-    if main.average(main.dtcalc(ldata2))/6 > 10:
-        b = "red"
-    else:
-        b = "green"
+    main.collective(ldata, time)
+    #if (main.average(main.prodcalc(ldata2))) < 85:
+    #    g = "red"
+    #else:
+    #    g = "green"
+    #if main.average(main.dtcalc(ldata2))/6 > 10:
+    #    b = "red"
+    #else:
+    #    b = "green"
     return render_template("FrontEnd/f2/Mainpagef2.html",
                            #ppm=round(main.average(main.ftfcalc(ldata2)), 2),
                            #pro=round(main.average(main.prodcalc(ldata2, f2p)), 2),
@@ -83,7 +84,7 @@ def ppm2():
 
 @app.route("/pro2/")
 def pro2():
-    main.prodgraph(ldata2, time, f2p)
+    main.prodgraph(ldata2, time)
     return render_template("FrontEnd/f2/pro2.html")
 
 
@@ -132,8 +133,8 @@ def downtime3():
 
 @app.route("/f1/")
 def f1():
-    main.collective(ldata, f1p, time)
-    if (main.average(main.prodcalc(ldata, f1p))) < 85:
+    main.collective(ldata, time)
+    if (main.average(main.prodcalc(ldata))) < 85:
         g = "red"
     else:
         g = "green"
@@ -154,7 +155,7 @@ def f1():
 
 @app.route("/f2/")
 def f2():
-    main.collective(ldata2, f2p, time)
+    main.collective(ldata2, time)
     #if (main.average(main.prodcalc(ldata2, f2p))) < 85:
     #    g = "red"
     #else:

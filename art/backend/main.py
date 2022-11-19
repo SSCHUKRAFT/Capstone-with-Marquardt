@@ -233,10 +233,11 @@ def ftfcalc(folder):
         x = x + 1
     return results
 
-def prodcalc(folder, te):
+def prodcalc(folder):
     x = 0
+    te = passthresholds(folder)
     workhours = 10
-    pdata = consolidate(folder, 2, 1)
+    pdata = consolidate(folder, 3, 1)
     op = (workhours-.25) * pdata.__len__()
     values = []
     while x < pdata.__len__():
@@ -271,12 +272,12 @@ def ppcalcoverall(legacyfolder, timespan):
         x = x + 1
     return final
 
-def prodcalcoverall(legacyfolder, timespan, te):
+def prodcalcoverall(legacyfolder, timespan):
     fol = grabdays(legacyfolder, timespan)
     x = 0
     final = []
     while x < fol.__len__():
-        final.append(average(prodcalc(fol[x], te)))
+        final.append(average(prodcalc(fol[x])))
         x = x + 1
     return final
 
@@ -467,8 +468,8 @@ def ftfgraph(legacyfolder, timespan):
     fig.write_image("static/img/ppm.png")
     print("parts updated")
 
-def prodgraph(legacyfolder, timespan, te):
-    p = prodcalcoverall(legacyfolder, timespan, te)
+def prodgraph(legacyfolder, timespan):
+    p = prodcalcoverall(legacyfolder, timespan)
     temp = grabdays(legacyfolder, timespan)
     x = 0
     labels = []
@@ -512,15 +513,16 @@ def dtgraph(legacyfolder, timespan):
     fig.write_image("static/img/dt.png")
     print("Downtime updated")
 
-def collective(folder, te, time):
+def collective(folder, time):
     ftfgraph(folder, time)
-    prodgraph(folder, time, te)
+    prodgraph(folder, time)
     dtgraph(folder, time)
 
 if __name__ == '__main__':
     a = ["databaseCsv", "databaseCsvtest"]
-    b = [[3000,2000], [1800,1000,2090]]
     c = ["legacyDatabases", "legacyDatabasestest"]
     dbstore(a[0], "legacyDatabases")
+    dbstore(a[1], "legacyDatabasestest")
     ftfgraph(c[0], 10)
+    print(prodcalc("legacyDatabases/databaseCsv_2022-11-10"))
     #collective(c[0], b[1], 10)
