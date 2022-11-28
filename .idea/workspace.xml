@@ -4,140 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="fixed prod bug">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+    <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_downtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_downtime_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_employee_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_employee_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_failed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_failed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_passed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_passed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_retested_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/databaseCsv/pmdci_retested_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/flaskconnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/flaskconnection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-08/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-08/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-08/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-08/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-08/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-08/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-09/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-09/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-09/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-09/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-09/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-09/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-10/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-10/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-10/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-10/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-10/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-10/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-11/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-11/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-11/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-11/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-11/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-11/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-12/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-12/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-12/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-12/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-12/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-12/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-13/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-13/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-13/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-13/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-13/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-13/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-14/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-14/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-14/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-14/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-14/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-14/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-15/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-15/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-15/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-15/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-15/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-15/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-16/pmdci_downtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-24/pmdci_downtime_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-16/pmdci_employee_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-24/pmdci_employee_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-16/pmdci_failed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-24/pmdci_failed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-16/pmdci_passed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-24/pmdci_passed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-16/pmdci_retested_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-24/pmdci_retested_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-16/pmdci_settings_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-24/pmdci_settings_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-17/pmdci_downtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-25/pmdci_downtime_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-17/pmdci_employee_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-25/pmdci_employee_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-17/pmdci_failed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-25/pmdci_failed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-17/pmdci_passed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-25/pmdci_passed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-17/pmdci_retested_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-25/pmdci_retested_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-17/pmdci_settings_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-25/pmdci_settings_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-18/pmdci_downtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-26/pmdci_downtime_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-18/pmdci_employee_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-26/pmdci_employee_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-18/pmdci_failed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-26/pmdci_failed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-18/pmdci_passed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-26/pmdci_passed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-18/pmdci_retested_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-26/pmdci_retested_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-18/pmdci_settings_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabases/databaseCsv_2022-11-26/pmdci_settings_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-09/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-09/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-09/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-09/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-09/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-09/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-10/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-10/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-10/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-10/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-10/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-10/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-11/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-11/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-11/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-11/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-11/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-11/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-12/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-12/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-12/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-12/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-12/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-12/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-13/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-13/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-13/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-13/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-13/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-13/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-14/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-14/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-14/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-14/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-14/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-14/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-15/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-15/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-15/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-15/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-15/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-15/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-16/pmdci_downtime_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-16/pmdci_employee_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-16/pmdci_failed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-16/pmdci_passed_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-16/pmdci_retested_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-16/pmdci_settings_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_downtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_downtime_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_failed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_failed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_passed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_passed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_retested_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-17/pmdci_retested_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-18/pmdci_failed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-18/pmdci_failed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-18/pmdci_passed_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-18/pmdci_passed_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-18/pmdci_retested_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/legacyDatabasestest/databaseCsv_2022-11-18/pmdci_retested_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/static/img/ppm.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/ppm.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/static/img/pro.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/pro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/static/img/tt.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,14 +29,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Black/PycharmProjects/datainterpreter&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Black/PycharmProjects/Capstone-with-Marquardt",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Black\PycharmProjects\Capstone-with-Marquardt\art\backend\legacyDatabases\databaseCsv_2022-11-09" />
@@ -320,7 +188,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668826068113</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation">
+      <created>1669648226828</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669648226828</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation">
+      <created>1669648236281</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669648236281</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,6 +256,7 @@
     <MESSAGE value="New graph format, dash is broken, button remapping not implemented yet," />
     <MESSAGE value="Fixed wording, and some fixes to the graphing process" />
     <MESSAGE value="fixed prod bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed prod bug" />
+    <MESSAGE value="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation" />
   </component>
 </project>
