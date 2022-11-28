@@ -2,6 +2,7 @@ import os
 import shutil as sh
 import datetime
 import plotly.graph_objects as go
+import kaleido
 from plotly.subplots import make_subplots
 
 # arrays arrays for days
@@ -29,7 +30,7 @@ def dbstore(folder, legacyfolder):
 def grabdays(legacyfolder, timespan):
     days=[]
     x = 0
-    if timespan <= os.listdir(legacyfolder).__len__():
+    if timespan < os.listdir(legacyfolder).__len__():
         while x < timespan:
             days.append((legacyfolder + "/" "databaseCsv_" + str(datetime.date.today() - datetime.timedelta(days=x))))
             x = x + 1
@@ -101,6 +102,29 @@ def combine(array1, array2):
     else:
         while x < array1.__len__():
             final.append((array1[x] + array2[x]))
+            x = x + 1
+    return final
+
+def combineav(array1, array2):
+    final = []
+    x = 0
+    if array1.__len__() < array2.__len__():
+        while x < array1.__len__():
+            final.append(((average([array1[x], array2[x]]))))
+            x = x + 1
+        while x < array2.__len__():
+            final.append((array2[x]))
+            x = x + 1
+    elif array1.__len__() > array2.__len__():
+        while x < array2.__len__():
+            final.append(((average([array1[x], array2[x]]))))
+            x = x + 1
+        while x < array1.__len__():
+            final.append((array1[x]))
+            x = x + 1
+    else:
+        while x < array1.__len__():
+            final.append((round(average([array1[x], array2[x]]))))
             x = x + 1
     return final
 
@@ -182,6 +206,18 @@ def consolidate(folder, position, extractval):
         y = y + 1
     return final
 
+def lowestarr(folderar):
+    x = 0
+    fold = folderar[0]
+    while x < folderar.__len__():
+        if fold.__len__() > folderar[x].__len__():
+            fold = folderar[x]
+        else:
+            fold = fold
+        x = x + 1
+    return fold
+
+
 # Calculate
 def passthresholds(folder):
     x = 2
@@ -210,6 +246,24 @@ def pt(legacyfolder, timespan):
 
 def ft(legacyfolder, timespan):
     fol = grabdays(legacyfolder, timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(add(failthresholds(fol[x])))
+        x = x + 1
+    return final
+
+def ptall(folderar, timespan):
+    fol = grabdays(folderar[0], timespan)
+    x = 0
+    final = []
+    while x < fol.__len__():
+        final.append(add(passthresholds(fol[x])))
+        x = x + 1
+    return final
+
+def ftall(folderar, timespan):
+    fol = grabdays(folderar[0], timespan)
     x = 0
     final = []
     while x < fol.__len__():
@@ -299,136 +353,169 @@ def escalcoverall(legacyfolder, timespan):
         x = x + 1
     return final
 
-# This measure is a percentage based on “Operator Hours” vs “Productive Hours”
-# Operator Hours are the total number of hours booked to a line times the number of operators
-# Productive Hours are a relationship of total parts made vs the takt time
+def ftfcalcall(folderar, time):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(ftfcalcoverall(folderar[x], time))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final = collection[0]
+        final = combineav(final, collection[y])
+        y = y + 1
+    return final
+
+def ppcalcall(folderar, time):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(ppcalcoverall(folderar[x], time))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final = collection[0]
+        final = combineav(final, collection[y])
+        y = y + 1
+    return final
+
+def prodcalcall(folderar, time):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(prodcalcoverall(folderar[x], time))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final = collection[0]
+        final = combineav(final, collection[y])
+        y = y + 1
+    return final
+
+def dtcalcall(folderar, time):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(dtcalcoverall(folderar[x], time))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final = collection[0]
+        final = combineav(final, collection[y])
+        y = y + 1
+    return final
+
+def escalcall(folderar, time):
+    x = 0
+    collection = []
+    final = []
+    while x < folderar.__len__():
+        collection.append(escalcoverall(folderar[x], time))
+        x = x + 1
+    y = 0
+    while y < folderar.__len__():
+        final = collection[0]
+        final = combineav(final, collection[y])
+        y = y + 1
+    return final
+
+
 # Graph
 
-def ppmcalcall(folderar):
+def ftfgraphar(folderar, timespan):
+    p = ppcalcall(folderar, timespan)
+    f = ftfcalcall(folderar, timespan)
+    ptt = ptall(folderar, timespan)
+    ftt = ftall(folderar, timespan)
+    temp = grabdays(lowestarr(folderar), timespan)
+    exp = []
+    exp2 = []
     x = 0
-    collection = []
-    final = []
-    while x < folderar.__len__():
-        collection.append(ftfcalc(folderar[x]))
-        x = x + 1
-    y = 0
-    while y < folderar.__len__():
-        final.append(add(collection[y]))
-        y = y + 1
-    return final
-
-def prodcalcall(folderar, tear):
-    x = 0
-    collection = []
-    final = []
-    while x < folderar.__len__():
-        collection.append(prodcalc(folderar[x], tear[x]))
-        x = x + 1
-    y = 0
-    while y < folderar.__len__():
-        final.append(average(collection[y]))
-        y = y + 1
-    return final
-
-def dtcalcall(folderar):
-    x = 0
-    collection = []
-    final = []
-    while x < folderar.__len__():
-        collection.append(dtcalc(folderar[x]))
-        x = x + 1
-    y = 0
-    while y < folderar.__len__():
-        final.append(average(collection[y]))
-        y = y + 1
-    return final
-
-def ftfgraphar(folderar):
     labels = []
+    while x < temp.__len__():
+        labels.append(temp[x][temp[x].__len__() - 8:temp[x].__len__()])
+        exp.append(p[x] - average(p))
+        exp2.append(f[x] + average(f))
+        x = x + 1
     i = 0
-    results = ppmcalcall(folderar)
-    while i < results.__len__():
-        labels.append("Floor " + str(i+1))
+    while i < exp.__len__():
+        if exp[i] < 0:
+            exp[i] = 0
         i = i + 1
-    fig = go.Figure(data=[go.Bar(x=labels, y=results, text=results, textposition='auto')])
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
-    fig.update_layout(title="Collective PPM", title_font_color="white")
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.add_trace(go.Scatter(x=labels, y=ptt, text=ptt, line_color='rgb(0,200,0)', name="Expected Throughput"))
+    fig.add_trace(go.Scatter(x=labels, y=ftt, text=ftt, line_color='rgb(200,0,0)', name="Expected Failed"),
+                  secondary_y=True)
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,100,0)', name="Actual Throughput"))
+    fig.add_trace(go.Scatter(x=labels, y=exp, text=p, line_color='rgba(0,0,0,0)', showlegend=False))
+    fig.add_trace(go.Scatter(x=labels, y=exp2, text=p, line_color='rgba(0,0,0,0)', showlegend=False), secondary_y=True)
+    fig.add_trace(go.Scatter(x=labels, y=f, text=f, line_color='rgb(100,0,0)', name="Actual Failed"), secondary_y=True)
+    fig.update_layout(title="First Time Failures & Total Throughput", title_font_color="white",
+                      paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(legend=dict(font=dict(color="white")))
     fig.update_xaxes(color='white')
-    fig.update_yaxes(color='white')
+    fig.update_yaxes(color='white', title="Throughput")
+    fig.update_yaxes(gridcolor='rgb(50,50,50)', title="Failed", secondary_y=True)
+    fig.update_yaxes(rangemode='tozero', constraintoward='bottom')
+    fig.update_yaxes(rangemode='tozero', constraintoward='bottom', secondary_y=True)
     fig.write_image("static/img/ppm.png")
-    print("ppm updated")
+    print("parts updated")
 
-def prodgraphar(folderar, tear):
-    labels = []
-    i = 0
-    temp = folderar
-    while i < temp.__len__():
-        labels.append("Floor " + str(i+1))
-        i = i + 1
+def prodgraphar(folderar, timespan):
+    p = prodcalcall(folderar, timespan)
+    temp = grabdays(lowestarr(folderar), timespan)
     x = 0
-    y = prodcalcall(folderar, tear)
-    temp = []
-    while x < y.__len__():
-        temp.append(str(round(y[x], 2)) + "%")
+    labels = []
+    hun = []
+    eighty = []
+    while x < temp.__len__():
+        labels.append(temp[x][temp[x].__len__() - 8:temp[x].__len__()])
+        hun.append(100)
+        eighty.append(85)
         x = x + 1
-    fig = go.Figure(data=[go.Table(header=dict(values=["Machine", 'Productivity']),
-                                   cells=dict(
-                                       values=[labels, temp],
-                                       font_color=['rgb(0, 0, 0)',
-                                                   ['rgba(0,172,32, 0.8)' if val >= 85 else 'rgba(175,5,0, 0.8)' for val
-                                                    in y]]
-                                   ))])
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-    fig.update_layout(title="Collective Productivity", title_font_color="white")
+    fig = make_subplots()
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,0,150)', name="Productivity", showlegend=False))
+    fig.add_trace(go.Scatter(x=labels, y=hun, line_color='rgb(0,150,0)', name="100% Productivity"))
+    fig.add_trace(go.Scatter(x=labels, y=eighty, line_color='rgb(150,0,0)', name="85% Productivity"))
+    fig.update_layout(title="Productivity", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)',
+                      plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(legend=dict(font=dict(color="white")))
     fig.update_xaxes(color='white')
     fig.update_yaxes(color='white')
     fig.write_image("static/img/pro.png")
-    print("productivity updated")
+    print("Productivity updated")
 
-def dtgraphar(folderar):
-    labels = []
-    i = 0
-    temp = folderar
-    while i < temp.__len__():
-        labels.append("Floor " + str(i+1))
-        i = i + 1
+def dtgraphar(folderar, timespan):
+    p = dtcalcall(folderar, timespan)
+    e = escalcall(folderar, timespan)
+    temp = grabdays(lowestarr(folderar), timespan)
     x = 0
-    r = 0
-    l = 0
-    ty = []
-    tw = []
-    y = []
-    w = []
-    z = []
-    while r < temp.__len__():
-        ty.append(consolidate(folderar[r], 0, 1))
-        tw.append(consolidate(folderar[r], 0, 2))
-        r = r + 1
-    while l < tw.__len__():
-        y.append(round(average(ty[l])))
-        w.append(round(average(tw[l])))
-        l = l + 1
-    while x < y.__len__():
-        labels.append("Op " + str(x + 1))
-        z.append(600 - y[x] - w[x])
+    labels = []
+    while x < temp.__len__():
+        labels.append(temp[x][temp[x].__len__() - 8:temp[x].__len__()])
         x = x + 1
-    fig = go.Figure(
-        data=[go.Bar(name="Remaining time", marker_color='rgb(0,172,23)', x=labels, y=z, text=z, textposition='auto'),
-              go.Bar(name="Escalation time", marker_color='rgb(227,234,0)', x=labels, y=w, text=w, textposition='auto'),
-              go.Bar(name="Downtime", marker_color='rgb(175,5,0)', x=labels, y=y, text=y, textposition='auto'),
-              ])
+    fig = make_subplots()
+    fig.add_trace(go.Scatter(x=labels, y=p, text=p, line_color='rgb(0,0,150)', name="Downtime"))
+    fig.add_trace(go.Scatter(x=labels, y=e, text=e, line_color='rgb(150,75,50)', name="Escalation time"))
+    fig.update_layout(title="Downtime", title_font_color="white", paper_bgcolor='rgba(0,0,0,0)',
+                      plot_bgcolor='rgba(0,0,0,0)', autosize=False, width=840,
+                      height=600)
+    fig.update_layout(legend=dict(font=dict(color="white")))
     fig.update_xaxes(color='white')
     fig.update_yaxes(color='white')
-    fig.update_layout(title="Collective Downtime", title_font_color="white", barmode='stack')
-    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', autosize= False, width=840, height=600)
-    fig.update_traces(marker_line_color='rgb(8,48,107)')
     fig.write_image("static/img/dt.png")
-    print("downtime update")
+    print("Downtime updated")
 
-def collectivear(folderar, tear):
-    ftfgraphar(folderar)
-    prodgraphar(folderar, tear)
-    dtgraphar(folderar)
+def collectivear(folderar, time):
+    ftfgraphar(folderar, time)
+    prodgraphar(folderar, time)
+    dtgraphar(folderar, time)
 
 def ftfgraph(legacyfolder, timespan):
     p = ppcalcoverall(legacyfolder, timespan)
@@ -523,6 +610,5 @@ if __name__ == '__main__':
     c = ["legacyDatabases", "legacyDatabasestest"]
     dbstore(a[0], "legacyDatabases")
     dbstore(a[1], "legacyDatabasestest")
-    ftfgraph(c[0], 10)
-    print(prodcalc("legacyDatabases/databaseCsv_2022-11-10"))
-    #collective(c[0], b[1], 10)
+    collectivear(c,233)
+    #collective(c[1], 522)

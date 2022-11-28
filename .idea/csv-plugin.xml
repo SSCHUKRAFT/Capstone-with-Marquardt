@@ -59,35 +59,70 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-08\pmdci_downtime_data.csv">
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-18\pmdci_downtime_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-08\pmdci_employee_data.csv">
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-18\pmdci_employee_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-08\pmdci_settings_data.csv">
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-18\pmdci_passed_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-09\pmdci_employee_data.csv">
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-26\pmdci_downtime_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-09\pmdci_settings_data.csv">
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-26\pmdci_failed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-26\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_downtime_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_employee_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_settings_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

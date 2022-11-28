@@ -18,18 +18,29 @@
 				<li><a href="/ppm/"><p>FTF/TTP</p></a></li>
 				<li><a href="/pro/"><p>Productivity</p></a></li>
 				<li><a href="/dt/"><p>Downtime</p></a></li>
-					<li><a href="#"><p>Download</p></a></li>
+				<li><a  href="kpis.zip" download><p>Download</p></a></li>
 				<div class="active"></div>
 				</ul>
 		</div>
 
-	<div class="container">
-		<button type="button" class="btn" onclick=window.location.href="/Main/">Floor 1</button>
+<div class="container">
+		<button type="button" class="btn" onclick="openPopup()">Floor 1</button>
+			<div class="popup" id="popup">
+					<h2>Time Span</h2>
+						<form method="POST">
+							<input name="num">
+							<input type="submit">
+						</form>
+
+			<br>
+				<button type="button"onclick="closePopup()">Close</button>
+			</div>
 	</div>
-	
+</div>
+
 	<script>
 	let popup = document.getElementById("popup");
-	
+
 	function openPopup(){
 		popup.classList.add("open-popup");
 	}
@@ -37,6 +48,9 @@
 		popup.classList.remove("open-popup");
 	}
 </script>
+
+
+	</div>
 <div class="container2">
 		<button type="button" class="btn2" onclick="openPopup2()">Different Areas</button>
 			<div class="popup2" id="popup2">
