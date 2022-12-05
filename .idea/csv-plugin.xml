@@ -45,20 +45,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\art\backend\databaseCsvtest\pmdci_employee_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\art\backend\databaseCsvtest\pmdci_settings_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-18\pmdci_downtime_data.csv">
           <value>
             <Attribute>
@@ -95,34 +81,6 @@
           </value>
         </entry>
         <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-26\pmdci_passed_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_downtime_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_employee_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_passed_data.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\art\backend\legacyDatabases\databaseCsv_2022-11-27\pmdci_settings_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
