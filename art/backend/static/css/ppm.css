@@ -49,7 +49,7 @@
 	}
 	.logo{
 		display: block;
-		margin-bottom:130px;
+		margin-bottom:75px;
 	}
 	.logo-img{
 		width: 150px;
@@ -94,20 +94,23 @@
 	.nav-links li:hover ~ .active{
 		display:block;
 	}
- .nav-links li:nth-child(1):hover ~.active{
-		top:2.6%;
+    .nav-links li:nth-child(1):hover ~.active{
+		top:3.6%;
 	}
 	.nav-links li:nth-child(2):hover ~.active{
-		top:22.6%;
+		top:20.2%;
 	}
 	.nav-links li:nth-child(3):hover ~.active{
-		top:42.6%;
+		top:36.8%;
 	}
 	.nav-links li:nth-child(4):hover ~.active{
-		top:62.6%;
+		top:53.4%;
 	}
 	.nav-links li:nth-child(5):hover ~.active{
-		top:82.6%;
+		top:70%;
+	}
+	.nav-links li:nth-child(6):hover ~.active{
+		top:86.6%;
 	}
 
 	

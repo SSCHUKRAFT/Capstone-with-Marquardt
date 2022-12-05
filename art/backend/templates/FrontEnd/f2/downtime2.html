@@ -18,7 +18,8 @@
 				<li><a href="/ppm2/"><p>FTF/TTP</p></a></li>
 				<li><a href="/pro2/"><p>Productivity</p></a></li>
 				<li><a href="/dt2/"><p>Downtime</p></a></li>
-			<li><a  href="kpis.zip" download><p>Download</p></a></li>
+			<li><a href="{{ url_for('static',filename='report.pdf')}}" download><p>Download Report</p></a></li>
+				<li><a href="{{ url_for('static',filename='Csvs.zip')}}" download><p>Download Data</p></a></li>
 				<div class="active"></div>
 				</ul>
 		</div>

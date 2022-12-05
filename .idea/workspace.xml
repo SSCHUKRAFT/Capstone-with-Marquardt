@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/art/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,14 +30,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Black/PycharmProjects/Capstone-with-Marquardt",
-    "settings.editor.selected.configurable": "configurable.group.appearance"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Black/PycharmProjects/datainterpreter&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Black\PycharmProjects\Capstone-with-Marquardt\art\backend\legacyDatabases\databaseCsv_2022-11-09" />
@@ -44,7 +45,7 @@
       <recent name="C:\Users\Black\AppData\Local\Programs\Python\Python310\Lib\site-packages" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.flaskconnection (1)">
+  <component name="RunManager" selected="Python.main (1)">
     <configuration name="flaskconnection (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Capstone-with-Marquardt" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.flaskconnection (1)" />
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.flaskconnection (1)" />
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>

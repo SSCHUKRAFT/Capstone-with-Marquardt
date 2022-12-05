@@ -7,7 +7,6 @@
 </head>	
 
 <body>
-
 	<div class="header">
 		<div class="side-nav">
 			<a href="/" class="logo">
@@ -18,7 +17,8 @@
 				<li><a href="/ppm/"><p>FTF/TTP</p></a></li>
 				<li><a href="/pro/"><p>Productivity</p></a></li>
 				<li><a href="/dt/"><p>Downtime</p></a></li>
-				<li><a  href="kpis.zip" download><p>Download</p></a></li>
+				<li><a href="{{ url_for('static',filename='report.pdf')}}" download><p>Download Report</p></a></li>
+				<li><a href="{{ url_for('static',filename='Csvs.zip')}}" download><p>Download Data</p></a></li>
 				<div class="active"></div>
 				</ul>
 		</div>
@@ -31,9 +31,8 @@
 							<input name="num">
 							<input type="submit">
 						</form>
-
 			<br>
-				<button type="button"onclick="closePopup()">Close</button>
+				<button type="button" onclick="closePopup()">Close</button>
 			</div>
 	</div>
 </div>
