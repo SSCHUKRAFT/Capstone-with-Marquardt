@@ -5,7 +5,7 @@ app = Flask(__name__, template_folder="templates")
 data = "databaseCsv"
 ldata = "legacyDatabases"
 ldata2 = "legacyDatabasestest"
-time = 10
+time = 3
 f1p = [3000,2000]
 f2p = [30000,40000,80000]
 

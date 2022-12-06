@@ -1,0 +1,28 @@
+.edit {
+    height: 300px;
+    width: 500px;
+    background-color: #80e2ff;
+    border-radius: 25px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    position: absolute;
+    z-index: 10;
+}
+
+.edit_title {
+    width: 80%;
+    font-size: 28px;
+}
+
+.close_button {
+    height: fit-content;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+    font-family: var(--font-family);
+    font-size: 20px;
+}

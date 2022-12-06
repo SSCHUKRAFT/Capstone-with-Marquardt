@@ -1,0 +1,90 @@
+.engineer {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(225deg, rgb(0, 209, 251), white);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sidebar {
+    height: 95vh;
+    width: 7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-right: 25px;
+}
+
+.engineer_container {
+    height: 80vh;
+    width: 85vw;
+    background-color: rgba(255, 255, 255, 0.656);
+    border: solid black;
+    border-width: 1px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+}
+
+.engineer_tab_table {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.styled_table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 24px;
+    font-family: var(--font-family);
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: scroll;
+    height: 675px;
+    width: 900px;
+    display: block;
+}
+
+.styled_table thead tr th{
+    background-color: #45b6fe;
+    color: #ffffff;
+    text-align: left;
+    font-weight: normal;
+    width: 900px;
+}
+
+.styled_table th,
+.styled_table td {
+    padding: 12px 15px;
+    font-size: 24px;
+}
+
+.styled_table button {
+    font-size: 24px;
+}
+
+.styled_table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled_table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled_table tbody tr:last-of-type {
+    border-bottom: 2px solid #45b6fe;
+}

@@ -522,5 +522,5 @@ if __name__ == '__main__':
     b = [[3000,2000], [1800,1000,2090]]
     c = ["legacyDatabases", "legacyDatabasestest"]
     dbstore(a[0], "legacyDatabases")
-    ftfgraph(c[0], 10)
-    #collective(c[0], b[1], 10)
+    #ftfgraph(c[0], 10)
+    collective(c[0], b[1], 10)
