@@ -64,7 +64,7 @@
 	}
 	.logo{
 		display: block;
-		margin-bottom:130px;
+		margin-bottom:75px;
 	}
 	.logo-img{
 		width: 150px;
@@ -109,23 +109,23 @@
 	.nav-links li:hover ~ .active{
 		display:block;
 	}
-	.nav-links li:nth-child(1):hover ~.active{
-		top:2.6%;
+    .nav-links li:nth-child(1):hover ~.active{
+		top:3.6%;
 	}
 	.nav-links li:nth-child(2):hover ~.active{
-		top:20%;
+		top:20.2%;
 	}
 	.nav-links li:nth-child(3):hover ~.active{
-		top:37%;
+		top:36.8%;
 	}
 	.nav-links li:nth-child(4):hover ~.active{
-		top:53%;
+		top:53.4%;
 	}
 	.nav-links li:nth-child(5):hover ~.active{
-		top:69%;
+		top:70%;
 	}
 	.nav-links li:nth-child(6):hover ~.active{
-		top:85%;
+		top:86.6%;
 	}
 
 
@@ -161,6 +161,49 @@
 		transform: translateY(4px);
 }
 
+.popup{
+		width: 900px;
+		background: #e2e9f7;
+		border-radius: 6px;
+		position: absolute;
+		top: 0%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(0.1);
+		padding: 0 30px 30px;
+		color: #333;
+		visibility: hidden;
+		transition: transform 0.4s, top 0.4s;
+		z-index:10000;
+	}
+	.open-popup{
+		visibility: visible;
+		top:50%;
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	.popup img{
+		width: 800px;
+		height: 500px;
+
+	}
+	.popup h2{
+		font-size: 38px;
+		font-weight: 500;
+		margin: 30px 0 10px;
+	}
+	.popup button{
+		width: 100%;
+		margin-top: 50px;
+		padding: 10px 0;
+		background:#6fd649;
+		color: #fff;
+		border:0;
+		outline: none;
+		font-size: 18px;
+		border-radius: 4px;
+		cursor: pointer;
+		box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+	}
 
 /* Popup for different areas */
 	.container2{

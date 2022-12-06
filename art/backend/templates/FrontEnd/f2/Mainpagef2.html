@@ -2,77 +2,82 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ url_for('static',filename='css/mainpg.css')}}">
-
- 
-</head>	
+</head>
 
 <body>
 
-
-<button type="button" class="btn3" onclick=window.location.href="/ppm2/"><p>PPM</p>
+<button type="button" class="btn3" onclick=window.location.href="/ppm2/"><p>FTF/TTP</p>
 	<br>
-<h1>{{ppm}} Avg</h1>
-	<h1>{{w}} Total</h1>
+<h1 style="color:red;">{{ppm}} Avg FTF</h1>
+	<h1 style="color:green;">{{w}} Avg TTP</h1>
 </button>
-
-
-
 
 <button type="button" class="btn4" onclick=window.location.href="/pro2/"><p>Productivity</p>
 		<br>
-<h1 style="color:{{pcolor}};">{{pro}}%</h1>
-	</button>
-
-
+	<h1 style="color:{{pcolor}};">{{pro}}%</h1>
+</button>
 
 <button type="button" class="btn6" onclick=window.location.href="/dt2/"><p>Downtime</p>
 		<br>
 <h1 style="color:{{dtcolor}}">{{dt}}%</h1>
 	<h1>{{z}} min</h1>
 	</button>
-	<div class="header">
+
+<div class="header">
 		<div class="side-nav">
 			<a href='/' class="logo">
 				<img src="{{ url_for('static',filename='img/mart.PNG')}}" class="logo-img">
 			</a>
 			<ul class="nav-links">
 				<li><a href="/Main2/"><p>Dashboard</p></a></li>
-				<li><a href="/ppm2/"><p>PPM</p></a></li>
+				<li><a href="/ppm2/"><p>FTF/TTP</p></a></li>
 				<li><a href="/pro2/"><p>Productivity</p></a></li>
 				<li><a href="/dt2/"><p>Downtime</p></a></li>
-					<li><a href="#"><p>Download</p></a></li>
+					<li><a href="{{ url_for('static',filename='report.pdf')}}" download><p>Download Report</p></a></li>
+				<li><a href="{{ url_for('static',filename='Csvs.zip')}}" download><p>Download Data</p></a></li>
 				<div class="active"></div>
 				</ul>
 		</div>
-	
+
 	<div class="container">
-		<button type="button" class="btn" onclick=window.location.href="/Main2/">Floor 2</button>
+		<button type="button" class="btn" onclick="openPopup()">Floor 2</button>
+			<div class="popup" id="popup">
+					<h2>Time Span</h2>
+						<form method="POST">
+							<input name="num">
+							<input type="submit">
+						</form>
+
+			<br>
+				<button type="button"onclick="closePopup()">Close</button>
+			</div>
 	</div>
-	
+</div>
+
 	<script>
 	let popup = document.getElementById("popup");
-	
+
 	function openPopup(){
 		popup.classList.add("open-popup");
 	}
 	function closePopup(){
 		popup.classList.remove("open-popup");
 	}
-</script>
+	</script>
 
 <div class="container2">
 		<button type="button" class="btn2" onclick="openPopup2()">Different Areas</button>
 			<div class="popup2" id="popup2">
 					<h2> Select Area</h2>
-		<button type="button" onclick="window.location.href='/Main/';">Floor 1</button>
-		<button type="button" onclick="window.location.href='/Main2/';">Floor 2</button>
-		<button type="button" onclick="window.location.href='/Main3/';">All Floors</button>
+		<button type="button" onclick="window.location.href='/f1/';">Floor 1</button>
+		<button type="button" onclick="window.location.href='/f2/';">Floor 2</button>
+		<button type="button" onclick="window.location.href='/f3/';">All Floors</button>
 		<button type="button" onclick="closePopup2()">OK</button>
 	</div>
-	
-	<script>
+</div>
+		<script>
 	let popup2 = document.getElementById("popup2");
-	
+
 	function openPopup2(){
 		popup2.classList.add("open-popup2");
 	}
@@ -80,18 +85,7 @@
 		popup2.classList.remove("open-popup2");
 	}
 </script>
-<div>
-	<ul class="nav-links">
-				<li><a href="Mainpage.html"><p>Dashboard</p></a></li>
-				<li><a href="/ppm/"><p>FTF/TTP</p></a></li>
-				<li><a href="/pro/"><p>Productivity</p></a></li>
-				<li><a href="/dt/"><p>Downtime</p></a></li>
-				<div class="active"></div>
-				</ul>
 
-</div>
 
 </body>
-</html>	
-		
-		
+</html>

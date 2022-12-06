@@ -1,25 +1,30 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import main
 
 app = Flask(__name__, template_folder="templates")
 data = "databaseCsv"
+data2 = "databaseCsv2"
 ldata = "legacyDatabases"
-ldata2 = "legacyDatabasestest"
-time = 3
-f1p = [3000,2000]
-f2p = [30000,40000,80000]
+ldata2 = "legacyDatabases2"
+time = 100000
 
 @app.route("/")
 def index():
-    
     main.dbstore(data, ldata)
+    main.dbstore(data2,ldata2)
+    main.zipit(ldata, "Csvs")
+    main.zipit(ldata2, "Csvs")
+    main.zipit("Csvs", "static")
     return render_template("FrontEnd/LoginPage.html")
 
-
-@app.route("/Main/")
+@app.route("/Main/", methods=['GET', 'POST'])
 def mainpage():
-    main.collective(ldata, f2p, time)
-    if (main.average(main.prodcalcoverall(ldata, time, f2p))) < 85:
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata, time)
+    main.collective(ldata, time, "white")
+    if (main.average(main.prodcalcoverall(ldata, time))) < 85:
         g = "red"
     else:
         g = "green"
@@ -28,175 +33,226 @@ def mainpage():
     else:
         b = "green"
     return render_template("FrontEnd/f1/Mainpage.html",
-                           #ppm=round(main.average(main.ftfcalcoverall(ldata, time)), 2),
-                           #pro=round(main.average(main.prodcalcoverall(ldata, time, f2p)), 2),
-                           #dt=round(main.average(main.dtcalcoverall(ldata, time)) / 6),
-                           #w=round(main.add(main.ftfcalcoverall(ldata, time))),
-                           #z=round(main.average(main.dtcalcoverall(ldata, time))),
-                           #f="Floor 1",
-                           #pcolor=g,
-                           #dtcolor=b,
+                           ppm=round(main.average(main.ftfcalcoverall(ldata, time)), 2),
+                           pro=round(main.average(main.prodcalcoverall(ldata, time)), 2),
+                           dt=round(main.average(main.dtcalcoverall(ldata, time)) / 6),
+                           w=round(main.average(main.ppcalcoverall(ldata, time))),
+                           z=round(main.average(main.dtcalcoverall(ldata, time))),
+                           f="Floor 1",
+                           pcolor=g,
+                           dtcolor=b,
                            )
 
-@app.route("/ppm/")
+@app.route("/ppm/", methods=['GET', 'POST'])
 def ppm():
-    main.ftfgraph(ldata, time)
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata, time)
+    main.ftfgraph(ldata, time, "white")
     return render_template("FrontEnd/f1/ppm.html")
 
-@app.route("/pro/")
+@app.route("/pro/", methods=['GET', 'POST'])
 def pro():
-    main.prodgraph(ldata, time, f2p)
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata, time)
+    main.prodgraph(ldata, time, "white")
     return render_template("FrontEnd/f1/pro.html")
 
-
-@app.route("/dt/")
+@app.route("/dt/", methods=['GET', 'POST'])
 def downtime():
-    main.dtgraph(ldata, time)
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata, time)
+    main.dtgraph(ldata, time, "white")
     return render_template("FrontEnd/f1/downtime.html")
 
-@app.route("/Main2/")
+@app.route("/Main2/", methods=['GET', 'POST'])
 def mainpage2():
-    main.collective(ldata, f2p, time)
-    if (main.average(main.prodcalc(ldata2, f2p))) < 85:
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata2, time)
+    main.collective(ldata2, time, "white")
+    if (main.average(main.prodcalcoverall(ldata2, time))) < 85:
         g = "red"
     else:
         g = "green"
-    if main.average(main.dtcalc(ldata2))/6 > 10:
+    if main.average(main.dtcalcoverall(ldata2, time)) / 6 > 10:
         b = "red"
     else:
         b = "green"
     return render_template("FrontEnd/f2/Mainpagef2.html",
-                           #ppm=round(main.average(main.ftfcalc(ldata2)), 2),
-                           #pro=round(main.average(main.prodcalc(ldata2, f2p)), 2),
-                           #dt=round(main.average(main.dtcalc(ldata2)) / 6),
-                           #w=round(main.add(main.ftfcalc(ldata2))),
-                           #z=round(main.average(main.dtcalc(ldata2))),
-                           #f="Floor 2",
-                           #pcolor=g,
-                           #dtcolor=b,
+                           ppm=round(main.average(main.ftfcalcoverall(ldata2, time)), 2),
+                           pro=round(main.average(main.prodcalcoverall(ldata2, time)), 2),
+                           dt=round(main.average(main.dtcalcoverall(ldata2, time)) / 6),
+                           w=round(main.average(main.ppcalcoverall(ldata2, time))),
+                           z=round(main.average(main.dtcalcoverall(ldata2, time))),
+                           f="Floor 1",
+                           pcolor=g,
+                           dtcolor=b,
                            )
 
-@app.route("/ppm2/")
+@app.route("/ppm2/", methods=['GET', 'POST'])
 def ppm2():
-    main.ftfgraph(ldata2, time)
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata2, time)
+    main.ftfgraph(ldata2, time, "white")
     return render_template("FrontEnd/f2/ppm2.html")
 
-@app.route("/pro2/")
+@app.route("/pro2/", methods=['GET', 'POST'])
 def pro2():
-    main.prodgraph(ldata2, time, f2p)
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata2, time)
+    main.prodgraph(ldata2, time, "white")
     return render_template("FrontEnd/f2/pro2.html")
 
-
-@app.route("/dt2/")
+@app.route("/dt2/", methods=['GET', 'POST'])
 def downtime2():
-    main.dtgraph(ldata2, time)
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata2, time)
+    main.dtgraph(ldata2, time, "white")
     return render_template("FrontEnd/f2/downtime2.html")
 
-@app.route("/Main3/")
+@app.route("/Main3/", methods=['GET', 'POST'])
 def mainpage3():
-    main.collectivear([ldata, ldata2], [f1p, f2p])
-    if main.average(main.prodcalcall([ldata, ldata2], [f1p, f2p])) < 85:
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfita([ldata, ldata2], time)
+    main.collectivear([ldata, ldata2], time, "white")
+    if main.average(main.prodcalcall([ldata, ldata2], time)) < 85:
         g = "red"
     else:
         g = "green"
-    if main.average(main.dtcalcall([ldata, ldata2]))/6 > 10:
+    if main.average(main.dtcalcall([ldata, ldata2], time)) / 6 > 10:
         b = "red"
     else:
         b = "green"
     return render_template("FrontEnd/f3/Mainpagef2.html",
-                           #ppm=round(main.average(main.ppmcalcall([ldata, ldata2])), 2),
-                           #pro=round(main.average(main.prodcalcall([ldata, ldata2], [f1p, f2p])), 2),
-                           #dt=round(main.average(main.dtcalcall([ldata, ldata2])) / 6),
-                           #w=round(main.add(main.ppmcalcall([ldata, ldata2]))),
-                           #z=round(main.average(main.dtcalcall([ldata, ldata2]))),
-                           #f="All Floors",
-                           #pcolor=g,
-                           #dtcolor=b,
+                           ppm=round(main.average(main.ftfcalcall([ldata, ldata2], time)), 2),
+                           pro=round(main.average(main.prodcalcall([ldata, ldata2], time)), 2),
+                           dt=round(main.average(main.dtcalcall([ldata, ldata2], time)) / 6),
+                           w=round(main.average(main.ppcalcall([ldata, ldata2], time))),
+                           z=round(main.average(main.dtcalcall([ldata, ldata2], time))),
+                           f="Floor 1",
+                           pcolor=g,
+                           dtcolor=b,
                            )
 
-@app.route("/ppm3/")
+@app.route("/ppm3/", methods=['GET', 'POST'])
 def ppm3():
-    main.ftfgraphar([ldata, ldata2])
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfita([ldata, ldata2], time)
+    main.ftfgraphar([ldata, ldata2], time, "white")
     return render_template("FrontEnd/f3/ppm2.html")
 
-@app.route("/pro3/")
+@app.route("/pro3/", methods=['GET', 'POST'])
 def pro3():
-    main.prodgraphar([ldata, ldata2], [f1p, f2p])
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfita([ldata, ldata2], time)
+    main.prodgraphar([ldata, ldata2], time, "white")
     return render_template("FrontEnd/f3/pro2.html")
 
-
-@app.route("/dt3/")
+@app.route("/dt3/", methods=['GET', 'POST'])
 def downtime3():
-    main.dtgraphar([ldata, ldata2])
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfita([ldata, ldata2], time)
+    main.dtgraphar([ldata, ldata2], time, "white")
     return render_template("FrontEnd/f3/downtime2.html")
 
-@app.route("/f1/")
+@app.route("/f1/", methods=['GET', 'POST'])
 def f1():
-    main.collective(ldata, f1p, time)
-    if (main.average(main.prodcalc(ldata, f1p))) < 85:
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata, time)
+    main.collective(ldata, time, "white")
+    if (main.average(main.prodcalcoverall(ldata, time))) < 85:
         g = "red"
     else:
         g = "green"
-    if main.average(main.dtcalc(ldata))/6 > 10:
+    if main.average(main.dtcalcoverall(ldata, time)) / 6 > 10:
         b = "red"
     else:
         b = "green"
     return render_template("FrontEnd/f1/Mainpage.html",
-                           #ppm=round(main.average(main.ftfcalc(ldata)), 2),
-                           #pro=round(main.average(main.prodcalc(ldata, f1p)), 2),
-                           #dt=round(main.average(main.dtcalc(ldata2)) / 6),
-                           #w=round(main.add(main.ftfcalc(ldata))),
-                           #z=round(main.average(main.dtcalc(ldata))),
-                           #f="Floor 1",
-                           #pcolor=g,
-                           #dtcolor=b,
+                           ppm=round(main.average(main.ftfcalcoverall(ldata, time)), 2),
+                           pro=round(main.average(main.prodcalcoverall(ldata, time)), 2),
+                           dt=round(main.average(main.dtcalcoverall(ldata, time)) / 6),
+                           w=round(main.average(main.ppcalcoverall(ldata, time))),
+                           z=round(main.average(main.dtcalcoverall(ldata, time))),
+                           f="Floor 1",
+                           pcolor=g,
+                           dtcolor=b,
                            )
 
-@app.route("/f2/")
+@app.route("/f2/", methods=['GET', 'POST'])
 def f2():
-    main.collective(ldata2, f2p, time)
-    #if (main.average(main.prodcalc(ldata2, f2p))) < 85:
-    #    g = "red"
-    #else:
-    #    g = "green"
-    #if main.average(main.dtcalc(ldata2))/6 > 10:
-    #    b = "red"
-    #else:
-    #    b = "green"
-    return render_template("FrontEnd/f2/Mainpagef2.html",
-                           #ppm=round(main.average(main.ftfcalc(ldata2)), 2),
-                           #pro=round(main.average(main.prodcalc(ldata2, f2p)), 2),
-                           #dt=round(main.average(main.dtcalc(ldata2)) / 6),
-                           #w=round(main.add(main.ftfcalc(ldata2))),
-                           #z=round(main.average(main.dtcalc(ldata2))),
-                           #f="Floor 2",
-                           #pcolor=g,
-                           #dtcolor=b,
-                           )
-
-
-@app.route("/f3/")
-def f3():
-    main.collectivear([ldata, ldata2], [f1p, f2p])
-    if main.average(main.prodcalcall([ldata, ldata2], [f1p, f2p])) < 85:
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfit(ldata, time)
+    main.collective(ldata2, time, "white")
+    if (main.average(main.prodcalcoverall(ldata2, time))) < 85:
         g = "red"
     else:
         g = "green"
-    if main.average(main.dtcalcall([ldata, ldata2]))/6 > 10:
+    if main.average(main.dtcalcoverall(ldata2, time)) / 6 > 10:
+        b = "red"
+    else:
+        b = "green"
+    return render_template("FrontEnd/f2/Mainpagef2.html",
+                           ppm=round(main.average(main.ftfcalcoverall(ldata2, time)), 2),
+                           pro=round(main.average(main.prodcalcoverall(ldata2, time)), 2),
+                           dt=round(main.average(main.dtcalcoverall(ldata2, time)) / 6),
+                           w=round(main.average(main.ppcalcoverall(ldata2, time))),
+                           z=round(main.average(main.dtcalcoverall(ldata2, time))),
+                           f="Floor 1",
+                           pcolor=g,
+                           dtcolor=b,
+                           )
+
+@app.route("/f3/", methods=['GET', 'POST'])
+def f3():
+    global time
+    if request.method == "POST":
+        time = int(request.form.get("num"))
+    main.pdfita([ldata, ldata2], time)
+    main.collectivear([ldata, ldata2], time, "white")
+    if main.average(main.prodcalcall([ldata, ldata2], time)) < 85:
+        g = "red"
+    else:
+        g = "green"
+    if main.average(main.dtcalcall([ldata, ldata2], time))/6 > 10:
         b = "red"
     else:
         b = "green"
     return render_template("FrontEnd/f3/Mainpagef2.html",
-                           #ppm=round(main.average(main.ppmcalcall([ldata, ldata2])), 2),
-                           #pro=round(main.average(main.prodcalcall([ldata, ldata2], [f1p, f2p])), 2),
-                           #dt=round(main.average(main.dtcalcall([ldata, ldata2])) / 6),
-                           #w=round(main.add(main.ppmcalcall([ldata, ldata2]))),
-                           #z=round(main.average(main.dtcalcall([ldata, ldata2]))),
-                           #f="All Floors",
-                           #pcolor=g,
+                           ppm=round(main.average(main.ftfcalcall([ldata, ldata2], time)), 2),
+                           pro=round(main.average(main.prodcalcall([ldata, ldata2], time)), 2),
+                           dt=round(main.average(main.dtcalcall([ldata, ldata2], time)) / 6),
+                           w=round(main.average(main.ppcalcall([ldata, ldata2], time))),
+                           z=round(main.average(main.dtcalcall([ldata, ldata2], time))),
+                           f="All Floors",
+                           pcolor=g,
+                           dtcolor=b,
                            )
-
-
 
 if __name__ == "__main__":
     app.run()
