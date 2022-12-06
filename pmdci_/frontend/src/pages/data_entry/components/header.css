@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+}
+  
+.machine {
+  width: 87%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+  
+.machine p {
+  font-size:28px;
+  padding-left: 20px;
+}
+  
+.machine_select {
+  padding-left: 10px;
+}
+  
+.language {
+  width: 10%;
+}
+  
+.language_select {
+  padding-right: 50px;
+}
