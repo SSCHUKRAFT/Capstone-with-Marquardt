@@ -357,7 +357,7 @@ def prodcalcoverall(legacyfolder, timespan):
     x = 0
     final = []
     while x < fol.__len__():
-        final.append(add(prodcalc(fol[x])))
+        final.append(average(prodcalc(fol[x])))
         x = x + 1
     return final
 
@@ -687,4 +687,5 @@ if __name__ == '__main__':
     ldata = "legacyDatabases"
     ldata2 = "legacyDatabases2"
     time = 100000
-    collective(ldata, time, "white")
+    #collective(ldata, time, "white")
+    print(prodcalc("legacyDatabases/databaseCsv_2022-11-29"))
