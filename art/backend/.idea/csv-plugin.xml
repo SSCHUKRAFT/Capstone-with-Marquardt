@@ -129,6 +129,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-11-28\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\legacyDatabases\databaseCsv_2022-12-01\pmdci_downtime_data.csv">
           <value>
             <Attribute>
@@ -143,6 +150,35 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-12-02\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-12-04\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-12-05\pmdci_passed_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\legacyDatabases\databaseCsv_2022-12-05\pmdci_settings_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry />
       </map>
     </option>
   </component>

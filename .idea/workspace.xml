@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="Only one bug present, tha tbeing main button on each main page for time is busted.">
-      <change beforePath="$PROJECT_DIR$/.idea/Capstone-with-Marquardt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Capstone-with-Marquardt.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8049f476-d6e3-4127-8847-1026653018f6" name="Changes" comment="All know bugs fixed, final version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/static/img/dt.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/dt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/static/img/ppm.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/ppm.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/art/backend/static/img/pro.png" beforeDir="false" afterPath="$PROJECT_DIR$/art/backend/static/img/pro.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,14 +29,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Black/PycharmProjects/Capstone-with-Marquardt/art/backend/venv/Scripts",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Black/PycharmProjects/Capstone-with-Marquardt/art/backend/venv/Scripts&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Black\PycharmProjects\Capstone-with-Marquardt\art\backend\legacyDatabases\databaseCsv_2022-11-09" />
@@ -116,6 +110,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.flaskconnection" />
+      <item itemvalue="Python.main (1)" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
@@ -219,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670207048778</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="All know bugs fixed, final version">
+      <created>1670264104995</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1670264104995</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -275,6 +277,7 @@
     <MESSAGE value="fixed prod bug" />
     <MESSAGE value="Render partial fixes, all floors functionality, the ability to go back a certain amount of days, many fixes to data interpretation" />
     <MESSAGE value="Only one bug present, tha tbeing main button on each main page for time is busted." />
-    <option name="LAST_COMMIT_MESSAGE" value="Only one bug present, tha tbeing main button on each main page for time is busted." />
+    <MESSAGE value="All know bugs fixed, final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="All know bugs fixed, final version" />
   </component>
 </project>
